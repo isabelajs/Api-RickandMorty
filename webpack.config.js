@@ -1,6 +1,8 @@
 let path = require("path");
 let HtmlWebpackPlugin = require("html-webpack-plugin")
 let MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const copyPlugin = require('copy-webpack-plugin')
+
 
 module.exports= {
    entry: "./src/main.js",
@@ -28,6 +30,11 @@ module.exports= {
             use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
          },
 
+         {
+            test: /\.(png|svg|jpg|jpeg|gif)$/i,
+            type: 'asset/resource',
+         }
+
       ]
    },
 
@@ -38,6 +45,18 @@ module.exports= {
          inject: true,
       }),
 
-      new MiniCssExtractPlugin()
+      new MiniCssExtractPlugin({
+         filename: "style.css"
+      }),
+
+      new copyPlugin({
+         patterns: [
+            {
+               from: path.resolve(__dirname,"src","assets/img"), //copiar todas las imagenes de assets
+               to: "assets/img"
+            }
+         ]
+      }),
+
    ]
 }
