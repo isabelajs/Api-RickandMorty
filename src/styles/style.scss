@@ -1,5 +1,11 @@
 $base-background: #1F252B;
-
+$second-blue: #191C1F;
+$third-blue: #22292F;
+$color-line: #1BBCA9;
+$color-dead: #F83745;
+$color-live: #34DA76;
+$color-unknown: #C8DEE9;
+$color-on-post: rgba(112, 116, 117, 0.1);
 
 
 
@@ -7,6 +13,8 @@ $base-background: #1F252B;
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
 }
 
 .header{
@@ -23,8 +31,6 @@ $base-background: #1F252B;
       background-size: contain;
       background-repeat:no-repeat ;
       background-position: center;
-      width: 25px;
-      height: 25px;
       margin-right: 10px;
    }
 
@@ -59,29 +65,110 @@ $base-background: #1F252B;
    display: flex;
    flex-direction: column;
    align-items: center;
-}
 
-.cBuscador{
-   margin-top: 15px;
 
-   #buscador{
+   .cSearch{
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
       border-radius: 5px 0 ;
-      border: none;
-      padding: 5px 10px;
+      background: white;
       width: 256px;
+      height: 30px;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+   
+      &__buttonSend{
+         width: 32px;
+         height: 28px;
+         background-color: white;
+         background-image: url("../assets/img/icon__buscar.svg");
+         background-size: cover;
+         background-repeat:no-repeat ;
+         background-position: center;
+         border: none;
+         margin-left: 10px;
+         cursor: pointer;
+         outline: none;
       }
    
-   .buttonSend{
-      background-image: url("../assets/img/icon__buscar.svg");
+      &__search{
+         width: 207px;
+         margin-left: 5px;
+         border: none;
+         padding: 5px 10px;
+         outline: none;
+         }
+      
+      
+   
    }
 
+   .cOptionsBar{  
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 15px;
+      height: 45px;
+      background: $second-blue;
+      width: 100%;
+
+      .cOptionButton{
+         border-right: white 1px solid;
+      }
+
+      &__lifeBar{
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         width: 180px;
+         background: $second-blue;
+
+         .lifeBar{
+            display: flex;
+            padding: 13.5px;
+            justify-content: center;
+            align-items: center;
+
+            .containerLife{
+               width: 20px;
+               height: 18px;
+               transform: skew(150deg);
+               background-color: $color-on-post;
+               cursor: pointer;
+   
+               &--live{
+               background: $color-live;
+               margin-right: 8px;
+               }
+   
+               &--dead{
+                  background: $color-dead;
+                  margin-right: 8px;
+   
+               }
+   
+               &--unknown{
+                  background: $color-unknown;
+               }
+            }
+         }
+
+      }
+
+      
+   }
 }
 
 
 
 
 
+
+
+.icon{
+   width: 28px;
+   height: 28px;
+}
 
 
 a{
@@ -92,4 +179,78 @@ a{
 
 .hidden{
    display: none;
+}
+
+.cOptionButton{
+   display: flex;
+   justify-content: center;
+   position: relative;
+   padding: 12px;
+   width: 200px;
+   font-size: 14px;
+   font-weight: 700;
+   text-align: center;
+   color: white;
+   background: $second-blue;
+
+   &:hover::after{
+      content: "";
+      position: absolute ;
+      bottom: 7px;
+      text-align: center;
+      border-bottom: $color-line 2px solid;
+      width: 32px;
+   }
+
+}
+
+
+
+.cOptionButton--selected{
+   background: $third-blue;
+   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+   &::after{
+   content: "";
+   position: absolute ;
+   bottom: 7px;
+   text-align: center;
+   border-bottom: $color-line 2px solid;
+   width: 64px;
+   }
+
+   &:hover::after{
+      content: "";
+      position: absolute ;
+      bottom: 7px;
+      text-align: center;
+      border-bottom: $color-line 2px solid;
+      width: 64px;
+      }
+}
+
+.hideContainerLife{
+   mix-blend-mode: overlay;
+}
+
+
+@media (min-width:375px){
+   .app{
+      .cSearch{
+         width: 280px;
+      }
+   }
+}
+
+@media (min-width:768px){
+   .app{
+      
+      .cOptionsBar{
+         padding: 0 25px;
+         .cSearch{
+            margin-top: 0;
+         }
+      }
+   }
+   
 }
