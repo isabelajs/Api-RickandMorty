@@ -3,7 +3,7 @@ $second-blue: #191C1F;
 $third-blue: #22292F;
 $color-line: #1BBCA9;
 $color-dead: #F83745;
-$color-live: #34DA76;
+$color-alive: #34DA76;
 $color-unknown: #C8DEE9;
 $color-on-post: rgba(112, 116, 117, 0.1);
 
@@ -162,6 +162,49 @@ $color-on-post: rgba(112, 116, 117, 0.1);
 
       
    }
+
+   .cCharacterCard{
+      width: 260px;
+      margin-top:30px ;
+      @include centerObject;    
+      justify-content: center;
+      flex-direction: column;
+      clip-path: polygon(0 0, 93% 0, 100% 7%, 100% 100%, 7% 100%, 0 93%);
+      overflow: hidden;
+
+
+      &__img{
+         width: 260px;
+         height: 280px;
+      }
+
+      &__txt{
+         height: 50px;
+         padding: 5px;
+         width: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         background: $second-blue;
+
+         .txt__name{
+            color: white;
+            font-size: 16px;
+         }
+
+         .txt__status{
+            height: 4px;
+            width: 50px;
+            &--alive{
+               background: $color-alive;
+            }
+         }
+
+
+
+      }      
+      
+   }
 }
 
 .footer{
@@ -179,7 +222,6 @@ $color-on-post: rgba(112, 116, 117, 0.1);
    width: 28px;
    height: 28px;
 }
-
 
 a{
    font-size: 20px;
@@ -214,8 +256,6 @@ a{
 
 }
 
-
-
 .cOptionButton--selected{
    background: $third-blue;
    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -244,6 +284,8 @@ a{
 }
 
 
+
+
 @media (min-width:375px){
    .app{
          .cSearch{
@@ -251,8 +293,6 @@ a{
          }
       }
 }
-   
-
 
 @media (min-width:768px){
    .app{
