@@ -124,6 +124,7 @@ $color-on-post: rgba(112, 116, 117, 0.1);
          align-items: center;
          padding: 15px;
          height: 50px;
+         cursor: pointer;
          
 
          .lifeBar{
@@ -138,8 +139,8 @@ $color-on-post: rgba(112, 116, 117, 0.1);
                background-color: $color-on-post;
                cursor: pointer;
    
-               &--live{
-               background: $color-live;
+               &--alive{
+               background: $color-alive;
                margin-right: 8px;
                }
    
@@ -180,23 +181,31 @@ $color-on-post: rgba(112, 116, 117, 0.1);
 
       &__txt{
          height: 50px;
-         padding: 5px;
+         padding: 5px 0;
          width: 100%;
          display: flex;
          flex-direction: column;
-         justify-content: center;
+         align-items: flex-end;
+         justify-content: space-evenly;
          background: $second-blue;
 
          .txt__name{
             color: white;
             font-size: 16px;
+            margin: 0 auto;
          }
 
          .txt__status{
             height: 4px;
-            width: 50px;
+            
+            &--dead{
+               width: 50px;
+               background: $color-dead;
+            }
+
             &--alive{
-               background: $color-alive;
+               width: 100px;
+               background-color: $color-alive;
             }
          }
 
@@ -244,6 +253,7 @@ a{
    text-align: center;
    color: white;
    background: $second-blue;
+   cursor: pointer;
 
    &:hover::after{
       content: "";
