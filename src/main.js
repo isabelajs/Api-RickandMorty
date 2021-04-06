@@ -1,6 +1,6 @@
 import "./styles/style.scss"
 import {router} from "./router/indexRoutes.js"
-
+import {getData} from "./utils/getData.js"
 
 window.addEventListener("hashchange", ()=>{
    router(window.location.hash)
@@ -52,6 +52,6 @@ function selectStatusLife(container){
    container.classList.toggle("hideContainerLife")
 }
 
+let urlData ="https://rickandmortyapi.com/api/character";
 
-
-
+// getData(urlData).then(x=>console.log(x))
