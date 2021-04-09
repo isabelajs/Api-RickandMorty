@@ -59,3 +59,4 @@ function visibilityModalInformation(){
   let main = document.querySelector("main")
   main.appendChild(cCharacterInfo())
 }
+
