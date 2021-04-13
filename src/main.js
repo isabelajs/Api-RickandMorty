@@ -24,8 +24,14 @@ function hiddenElementsHeader(){
 }
 
 //se añade el main dentro de la página
+let url = "https://rickandmortyapi.com/api/character/";
 let header = document.querySelector(".header")
-header.insertAdjacentElement("afterend",main())
+header.insertAdjacentElement("afterend",main(url))
+
+
+
+
+
 
 
 

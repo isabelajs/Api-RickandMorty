@@ -1,13 +1,13 @@
 import {cSearch} from "./cSearch.js"
 import {cOptionsBar} from "./cOptionsBar.js"
-import{cCharacterCard} from "./cCharacterCard.js"
+import{cCharacters} from "./cCharacters/cCharacters.js"
 
 let main = ()=>{
    let cMain = document.createElement("main")
    cMain.classList.add("app")
    cMain.appendChild(cSearch())
    cMain.appendChild(cOptionsBar())
-   cMain.appendChild(cCharacterCard())
+   cMain.appendChild(cCharacters())
 
    //cambio de posicion en los elementos del header
    window.addEventListener("resize",()=>{moveSearch()});
@@ -18,11 +18,12 @@ let main = ()=>{
    optionButtons.forEach(button =>{button.addEventListener("click", (x)=>buttonAppearanceChange(x.path[0]))})
    
    
-   
    return cMain
 
 }
 
+
+//   characterCard.addEventListener("mouseleave",()=>{hiddenInformation()})
 
 
 
@@ -46,3 +47,4 @@ function moveSearch(){
 function buttonAppearanceChange(button){
    button.classList.toggle("cOptionButton--selected")
 }
+
