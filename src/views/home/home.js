@@ -2,12 +2,12 @@ import {cSearch} from "./cSearch.js"
 import {cOptionsBar} from "./cOptionsBar.js"
 import{cCharacters} from "./cCharacters/cCharacters.js"
 
-let main = ()=>{
+let main = (url)=>{
    let cMain = document.createElement("main")
    cMain.classList.add("app")
    cMain.appendChild(cSearch())
    cMain.appendChild(cOptionsBar())
-   cMain.appendChild(cCharacters())
+   cMain.appendChild(cCharacters(url))
 
    //cambio de posicion en los elementos del header
    window.addEventListener("resize",()=>{moveSearch()});

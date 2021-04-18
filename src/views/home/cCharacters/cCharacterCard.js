@@ -103,9 +103,11 @@ function hiddenInformation(card){
   info.classList.add("hidden")
 }
 
-//muestra el modal con mas información del personaje
+//muestra el modal con mas información del personaje y bloquea el scroll
 function visibilityModalInformation(card, character){
   let containerCards = document.querySelector(".cCharacters__characters")
   containerCards.appendChild(cCharacterInfo(character))
+  let html = document.querySelector ("html")
+  html.classList.add("scrollHidden")
 }
 

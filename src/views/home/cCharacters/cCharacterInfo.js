@@ -23,6 +23,7 @@ let cCharacterInfo = (character)=>{
   //TODO debo hacer una función que me pemrita desplegar el menú
   episodes.addEventListener("click",(event)=>showEpisodeMenu(event.path[0],character.episode))
 
+  //abre el modal con la información del personaje
   characterInfo.addEventListener("click", (event)=>{closeModal(event.target)})
 
   return characterInfo
@@ -30,12 +31,15 @@ let cCharacterInfo = (character)=>{
 
 export{cCharacterInfo}
 
-//cierra el modal
+//cierra el modal y desbloquea el scroll
 function closeModal(elementSelect){
   let outsideElement = document.querySelector(".cCharacterInfo")
+  let html = document.querySelector("html")
   if(elementSelect == outsideElement){
     outsideElement.remove()
+    html.classList.remove("scrollHidden")
   }  
+  
 }
 
 function showEpisodeMenu (button, episodes){

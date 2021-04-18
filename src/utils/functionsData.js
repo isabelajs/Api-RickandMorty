@@ -1,4 +1,4 @@
-let url = "https://rickandmortyapi.com/api/character/"
+// let url = "https://rickandmortyapi.com/api/character/"
 let fetch = require("node-fetch")
 
 
@@ -13,28 +13,33 @@ function getData (url_data){
 
 
 //obtengo todos los resultados de una sola pagina
-async function getResults (){
-   let data = await getData()
+async function getResults (url){
+   let data = await getData(url)
    let results = data.results
    return results
 }
 
+
+
  //obtengo el siguiente link, gracias a la data
-async function nextLink(){
-   data = await getData()
+async function nextLink(url){
+   console.log(url);
+   let data = await getData(url)
+   console.log(data);
    nextLink = data.info.next
-   if (nextLink == null){
-      console.log("debo crear una función que no permita darle más click al boton de siguiente");
-   }else{
-      return nextLink
-   }
+   console.log(nextLink);
+//    if (nextLink == null){
+//       console.log("debo crear una función que no permita darle más click al boton de siguiente");
+//    }else{
+//       return nextLink
+//    }
 }
 
  //obtengo el link anterior
-async function previousLink(){
-   let data = await getData()
+async function previousLink(url){
+   let data = await getData(url)
    let previousLink = data.info.prev
- 
+   
    if(!previousLink===null){
       return previousLink
    }else{
