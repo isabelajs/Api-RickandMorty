@@ -1,6 +1,9 @@
 import "./styles/style.scss"
 import {router} from "./router/indexRoutes.js"
 import {main} from "./views/home/home.js"
+import {dataCharacters} from "./utils/Data.js"
+
+
 
 window.addEventListener("hashchange", ()=>{
    router(window.location.hash)
@@ -26,7 +29,7 @@ function hiddenElementsHeader(){
 //se añade el main dentro de la página
 let url = "https://rickandmortyapi.com/api/character/";
 let header = document.querySelector(".header")
-header.insertAdjacentElement("afterend",main(url))
+header.insertAdjacentElement("afterend",main(dataCharacters))
 
 
 

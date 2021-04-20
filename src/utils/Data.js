@@ -197,14 +197,15 @@ class DataBase{
 
 
 
-let characters = new DataBase(url)
+let dataCharacters = new DataBase(url)
+export {dataCharacters}
 
-async function print (){
-  let x = await characters.filtrar();
-  console.log(x);
-}
+// async function print (){
+//   let x = await dataCharacters.filtrar();
+//   console.log(x);
+// }
 
-print()
+// print()
 
 
 
