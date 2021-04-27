@@ -22,9 +22,10 @@ let cCharacterCard = (character)=>{
                     </div>               
                   </div>
 
-                  <svg class="info__svg" width="106" height="38" viewBox="0 0 106 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M105 1H55.2789H10.568L1 14V37H93.3984L105 26.2414V1Z" stroke="black"/>
+                  <svg class="info__svg" width="60" height="38" viewBox="0 0 60 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M59 1H31.2709H6.336L1 14V37H52.5299L59 26.2414V1Z" stroke="#1E2327" stroke-width="2"/>
                   </svg>
+
                   
                 </div>`
 
@@ -40,6 +41,8 @@ let cCharacterCard = (character)=>{
   statusLife(character)
   //modifica el genero en la información del personaje
   gender(character)
+  //modifica el nombre segun el largo
+  modifyNameSize(character,characterCard)
   
 
   function statusLife(character){
@@ -62,16 +65,16 @@ let cCharacterCard = (character)=>{
     let gender = characterCard.querySelector(".gender")
     switch(character.gender){
       case "Female":
-        gender.style.backgroundImage = "url('../assets/img/masculino.svg')";
+        gender.style.backgroundImage = "url('../assets/img/female.svg')";
         break;
       case "Male":
         gender.style.backgroundImage = "url('../assets/img/masculino.svg')";
         break;
       case "Genderless":
-        gender.style.backgroundImage = "url('../assets/img/masculino.svg')";
+        gender.style.backgroundImage = "url('../assets/img/genderless.svg')";
         break;
       case "unknown":
-        gender.style.backgroundImage = "url('../assets/img/masculino.svg')";   
+        gender.style.backgroundImage = "url('../assets/img/unknown.svg')";   
         break;
   }
   }
@@ -111,3 +114,10 @@ function visibilityModalInformation(card, character){
   html.classList.add("scrollHidden")
 }
 
+//modifica el nombre según su largo
+function modifyNameSize(character, contenedor){
+  let name = contenedor.querySelector(".txt__name")
+  if(character.name.length>=30){
+    name.style.fontSize = "12px";
+  }
+}

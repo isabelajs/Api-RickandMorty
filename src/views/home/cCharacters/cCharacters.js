@@ -1,47 +1,60 @@
-// import {cCharacterCard} from "./cCharacterCard";
 import {cCharacterCard} from "./cCharacterCard.js";
-import { pageNumbering } from "./pagination.js";
+import {cPageNumbering, renderPageNumbering } from "./pagination.js";
+import {dataCharacters, dataPage} from "../../../utils/Data.js";
 
-let cCharacters = (dataCharacters)=>{
+let cCharacters = ()=>{
   let view =` <div class="cCharacters__characters"></div>`
   let pageCharacters = document.createElement("div");
   pageCharacters.classList.add("cCharacters");
   pageCharacters.innerHTML = view;
+  
+  //inserto el componente numeración de página
+  pageCharacters.insertAdjacentElement ("beforeend", cPageNumbering())
 
-  mainPage(dataCharacters)
-  pageCharacters.insertAdjacentElement ("beforeend", pageNumbering(dataCharacters))
- 
+  changeInDataPage()
+  renderCharacters()
+  
+
   return pageCharacters
 
 }
 
+//modifica en el dataPage el número de paginas a renderizar
+async function changeInDataPage(){
+  let data = await dataCharacters.filtrar()
+  dataPage.numberOfPages = Math.ceil(data.length/dataPage.numberCharactersPage)
+} 
 
-
-//obtengo toda la base de datos de los personajes
-async function getCharacters(dataCharacters){
-  let data = await dataCharacters.dataBase
-  return data
-}
-
- //renderizo los personajes segun el grupo que me especifiquen y la data
-function renderCharacters(groupCharacters){
+//renderiza los personajes
+async function renderCharacters(){
+  let data = await dataCharacters.filtrar()
   let characters =  document.querySelector(".cCharacters__characters")
   characters.innerHTML = ""
-  groupCharacters.forEach(character => {
-    characters.appendChild(cCharacterCard(character))
-  });
+  
+  //evalua si es necesario crear más paginas según el número de personajes
+  if(data.length > dataPage.numberCharactersPage){
+
+    let groupCharacters = data.slice(dataPage.numberCharactersPage*(dataPage.pageNumber-1),dataPage.numberCharactersPage*dataPage.pageNumber)
+    groupCharacters.forEach(character => {
+      characters.appendChild(cCharacterCard(character))
+    });
+    renderPageNumbering()
+
+  }else{
+    data.forEach(character => {
+      characters.appendChild(cCharacterCard(character))
+    });
+    //renderiza la numeración de la página
+    let pageNumbering = document.querySelector(".pageNumbering")
+    pageNumbering. innerHTML = "<div class='pageNumbering__index'> <div class='indexNumber indexNumber__selected'>1</div> </div>"
+  }
+
 }
 
-let numberCharactersPage = 20
-//renderiza la primera pagina
-async function mainPage (dataCharacters){
-  let data = await getCharacters(dataCharacters)
-  let seccionData = data.slice(0,numberCharactersPage)
-  let indexPage = document.querySelector(".pageNumbering__index")
-  indexPage.textContent = `${1 +"/"+ Math.round(data.length/20)}`
-  renderCharacters(seccionData, dataCharacters)
-}
 
 
-export{cCharacters, getCharacters, renderCharacters}
+
+
+
+export{cCharacters, renderCharacters}
 

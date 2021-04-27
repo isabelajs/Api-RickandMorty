@@ -20,10 +20,12 @@ let cCharacterInfo = (character)=>{
   characterInfo.innerHTML = view
 
   let episodes = characterInfo.querySelector(".cOptionButton")
+
+  aggNameCharacterInfo(character, characterInfo)
   //TODO debo hacer una función que me pemrita desplegar el menú
   episodes.addEventListener("click",(event)=>showEpisodeMenu(event.path[0],character.episode))
 
-  //abre el modal con la información del personaje
+  //cierra el modal al darle en algún lugar fuera del contenedor
   characterInfo.addEventListener("click", (event)=>{closeModal(event.target)})
 
   return characterInfo
@@ -50,3 +52,10 @@ function showEpisodeMenu (button, episodes){
   });
 }
 
+//agrega el nombre
+function aggNameCharacterInfo(character, contenedor){
+  let title = contenedor.querySelector(".contents__title")
+  if (character.name.length >= 20){
+    title.style.fontSize = "11px"
+  }
+}

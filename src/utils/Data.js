@@ -7,12 +7,13 @@ class DataBase{
     this.urlBase = url;
     this.dataBase = this.getData();
     this.filter = { status: ["Alive", "Dead"],
-                    species: ["Human"],
-                    gender: ["Male","Female"], 
+                    species: null,
+                    gender: null, 
                     origin: null,
-                    location:["Earth (Replacement Dimension)", "Earth (C-137)"],
-                    episode: ["1", "2"],
-                    }
+                    location:null,
+                    episode: null,
+                    };
+    this.filterData = this.filtrar()
   };
 
   async getData (){
@@ -21,6 +22,12 @@ class DataBase{
     
     while (urlNext){ 
         let res = await fetch(urlNext)
+          // {
+          //   method:"GET",
+          //   headers: {
+          //   	'Access-Control-Allow-Origin': '*',
+          // }
+          // });
         let data = await res.json()
         results.push(...data.results)
         urlNext = data.info.next
@@ -58,7 +65,7 @@ class DataBase{
     }
   }
 
-  async filtrar (){
+  async filtrar(){
     let characters = await this.dataBase;
     let filteredStatusCharacteres = this.filterStatus(characters)    
     let filteredSpeciesCharacteres = this.filterSpecies(filteredStatusCharacteres)
@@ -66,10 +73,13 @@ class DataBase{
     let filteredOriginCharacters = this.filterOrigin(filteredGendercharacteres)
     let filteredLocationCharacters = this.filterLocation(filteredOriginCharacters)
     let filteredEpisodesCharacters = this.filterEpisodes(filteredLocationCharacters)
+    
+    this.filterData = filteredEpisodesCharacters
+    //modificar el objeto .... otro
+    //cambiar el numero ... la hoja.... cantidad...
     return filteredEpisodesCharacters
 
   }
-
 
   filterStatus (characters){
     let status = this.filter.status
@@ -190,15 +200,35 @@ class DataBase{
 
 }
 
+class DataPage{
+  constructor(pageNum,nCharacters,numberOfPages = 0,numberOfPagesInPagination){
+    this.pageNumber = pageNum;
+    this.initPageBlock = 1;
+
+    if(screen.width < 768){
+      this.endPageBlock = 5;
+      this.numberOfPagesInPagination =5;
+    }
+    else{
+      this.endPageBlock = 10;
+      this.numberOfPagesInPagination =10;
+
+    }
+
+    this.numberCharactersPage = nCharacters;
+    this.numberOfPages = numberOfPages;
 
 
-
+  }
+}
 
 
 
 
 let dataCharacters = new DataBase(url)
-export {dataCharacters}
+let dataPage = new DataPage(1,20,0)
+
+export {dataCharacters, dataPage}
 
 // async function print (){
 //   let x = await dataCharacters.filtrar();
@@ -242,69 +272,3 @@ export {dataCharacters}
 
 
 
-
-
-
-// // async function getFirstPage (url){
-// //   characters = await getData(url)
-// //   page = characters[0]
-// //   return page
-// // }
-
-// // async function getStatus (url, status){
-// //   let results = await getData(url)
-// //   let alive = [];
-// //   let dead = [];
-// //   let unknown = [];
-
-// //   results.forEach(character => {
-// //     switch (character.status){
-// //       case "Alive":
-// //         alive.push(character);
-// //         break;
-// //       case "Dead":
-// //         dead.push(character);
-// //         break;
-// //       case "unknown":
-// //         unknown.push(character);
-// //         break;
-// //     }
-    
-    
-// //   });
-  
-// //   switch (status){
-// //     case "alive":
-// //       return alive;
-// //       break;
-// //     case "dead":
-// //       return dead;
-// //       break;
-// //     case "unknown":
-// //       return unknown;
-// //       break;
-// //   }
-
-// // }
-
-
-// async function getSpecies (url){
-//   characters = await getData(url)
-//   let species = new Set()
-
-//   characters.forEach(characters=> {
-//     species.add(characters.type)
-//   });
-
-//   return species
-// }
-
-
-
-// async function print (url){
-//   x = await getSpecies(url)
-//   console.log(x);
-// }
-
-
-// print(url)
