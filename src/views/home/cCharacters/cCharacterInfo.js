@@ -1,3 +1,5 @@
+import {displayOptions,clickActionsToOptions} from "../cOptionsBar.js"
+
 
 let cCharacterInfo = (character)=>{
   let view =` <div class="cInfoContainer">
@@ -11,22 +13,27 @@ let cCharacterInfo = (character)=>{
                     <div class="info__text">Gender: ${character.gender}</div>
                     <div class="info__text">Origin: ${character.origin.name}</div>
                     <div class="info__text">Location: ${character.location.name}</div>
-                    <div class="cOptionButton">Episodios</div>
+                    <div class="cOptionButton">
+                            <div class="cOptionButton__title">Episodios</div>
+                            <div class="cOptionButton__container hidden"></div>
+                    </div>
                   </div>
                 </div>
               </div>`
   let characterInfo = document.createElement("div")
   characterInfo.classList.add("cCharacterInfo")
   characterInfo.innerHTML = view
-
-  let episodes = characterInfo.querySelector(".cOptionButton")
-
+  
+  //modifica el tamaño del nombre por si es muy largo
   aggNameCharacterInfo(character, characterInfo)
-  //TODO debo hacer una función que me pemrita desplegar el menú
-  episodes.addEventListener("click",(event)=>showEpisodeMenu(event.path[0],character.episode))
 
   //cierra el modal al darle en algún lugar fuera del contenedor
-  characterInfo.addEventListener("click", (event)=>{closeModal(event.target)})
+  characterInfo.addEventListener("click", (event)=>{ closeModal(event.target)})
+
+  //selecciona el botón y despleza el menu de opciones
+  let buttonEpisode = characterInfo.querySelector(".cOptionButton__title")
+  renderOptionsEpisodes(buttonEpisode,character)
+  buttonEpisode.addEventListener("click", (event)=>{ displayOptions(event.target) })
 
   return characterInfo
 }
@@ -44,18 +51,25 @@ function closeModal(elementSelect){
   
 }
 
-function showEpisodeMenu (button, episodes){
-  button.classList.toggle("cOptionButton--selected")
-  let options = button.querySelector(".options")
-  episodes.forEach(episode => { 
-    let numberEpisode = episode.split("/")[5];  
-  });
-}
-
-//agrega el nombre
+//cambia el tamaño del titulo si es muy largo
 function aggNameCharacterInfo(character, contenedor){
   let title = contenedor.querySelector(".contents__title")
   if (character.name.length >= 20){
     title.style.fontSize = "11px"
   }
 }
+
+async function renderOptionsEpisodes(buttonEpisode,character){
+  let container = buttonEpisode.nextSibling.nextSibling
+  let episodes = character.episode
+
+  episodes.forEach(episode => {
+    container.innerHTML +=`<div id="${episode}" class="options">${episode}</div>`
+  });
+
+  let options =container.querySelectorAll(".options")
+  options.forEach(option=>{
+    option.addEventListener("click",()=>{ clickActionsToOptions()})
+  })
+}
+

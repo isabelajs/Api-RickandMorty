@@ -1,7 +1,3 @@
-{/* <div class="cSearch">
-            <button class="cSearch__buttonSend" ></button>
-            <input type="search" class="cSearch__search" id ="buscador" placeholder="Buscar">
-      </div> */}
 
 let cSearch = ()=>{
       let view = `      <button class="cSearch__buttonSend"></button>

@@ -11,23 +11,19 @@ let cCharacters = ()=>{
   //inserto el componente numeración de página
   pageCharacters.insertAdjacentElement ("beforeend", cPageNumbering())
 
-  changeInDataPage()
   renderCharacters()
-  
 
   return pageCharacters
 
 }
 
-//modifica en el dataPage el número de paginas a renderizar
-async function changeInDataPage(){
-  let data = await dataCharacters.filtrar()
-  dataPage.numberOfPages = Math.ceil(data.length/dataPage.numberCharactersPage)
-} 
 
 //renderiza los personajes
-async function renderCharacters(){
-  let data = await dataCharacters.filtrar()
+async function renderCharacters(tipoOrdenamiento){
+  let data = await dataCharacters.filtrar(tipoOrdenamiento)
+  //modifica en el dataPage el número de paginas a renderizar
+  dataPage.numberOfPages = Math.ceil(data.length/dataPage.numberCharactersPage)
+  
   let characters =  document.querySelector(".cCharacters__characters")
   characters.innerHTML = ""
   
@@ -38,7 +34,7 @@ async function renderCharacters(){
     groupCharacters.forEach(character => {
       characters.appendChild(cCharacterCard(character))
     });
-    renderPageNumbering()
+    renderPageNumbering(tipoOrdenamiento)
 
   }else{
     data.forEach(character => {

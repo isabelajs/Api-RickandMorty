@@ -13,18 +13,13 @@ let main = ()=>{
    //cambio de posicion en los elementos del header
    window.addEventListener("resize",()=>{moveSearch()});
    window.addEventListener("load",()=>{moveSearch()});
-
-   //cambio del componente optionbutton
-   let optionButtons =  cMain.querySelectorAll(".cOptionButton")
-   optionButtons.forEach(button =>{button.addEventListener("click", (x)=>buttonAppearanceChange(x.path[0]))})
-   
+ 
    
    return cMain
 
 }
 
 
-//   characterCard.addEventListener("mouseleave",()=>{hiddenInformation()})
 
 
 
@@ -45,7 +40,5 @@ function moveSearch(){
 
 
 
-function buttonAppearanceChange(button){
-   button.classList.toggle("cOptionButton--selected")
-}
+
 
