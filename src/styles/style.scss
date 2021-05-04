@@ -121,18 +121,10 @@ $color-bottom-hover:#0B647A;
          width: 100%;
          @include centerObject;
 
-         .cOptionButton{
-            &__container{
-               .cOptionButton{
-                  &__container{
-                     // top: 0px;
-                     float: left;
-                     // left: inherit;
-                     width: 200px;
-                  }
-               }
-            }
+         .containerMenu{
+            width: 100%;
          }
+
       }
       
 
@@ -500,6 +492,10 @@ a{
    color: black;
 }
 
+li{
+   list-style: none;
+}
+
 .hidden{
    display: none;
    visibility: hidden;
@@ -511,8 +507,6 @@ a{
 
 .cOptionButton{
    display: flex;
-   justify-content: center;
-   align-items: center;
    position: relative;
    background: $second-blue;
    cursor: pointer;
@@ -567,20 +561,27 @@ a{
       top: 50px;
       z-index: 1;
 
+   
       .options{
          color: white;
          background: $third-blue;
          text-align: center;
          padding: 10px 5px;
+         top: 50px;
          &:hover{
-            background-color: #69D200;;
+            background-color: #69D200;
          }
          &:last-child{
             border-radius: 0 0 4px 4px ;
          }
+         &--selected{
+            background-color: #69D200;
+         }
       }
+      
 
       .cOptionButton{
+         display: inline-block;
          width: 100%;
          background: $third-blue;
          height: 40px;
@@ -593,18 +594,19 @@ a{
             &:hover::after{
                bottom: 5px;
             }
-
-            
-
          }
          &:last-child{
             border-radius: 0 0 4px 4px;
          }
 
-         &__container{
-            top: 40px;
+         &__container{   
+            top: 0;
+            left: 100%;
             height: 200px;
             overflow: auto;
+            width: 200px;
+            border-radius: 4px 4px 4px 4px;
+
             &::-webkit-scrollbar {
                width: 10px;
             }
@@ -646,7 +648,7 @@ a{
       
       .cOptionsBar{
          
-         justify-content: space-between;
+         justify-content: space-around;
          padding: 0 25px;
          .cSearch{
             margin-top: 0;
@@ -654,9 +656,6 @@ a{
          
          &__right{
             max-width: 386px;
-            .cOptionButton{
-               max-width: 140px;
-            }
          }
       }
       .cCharacters{

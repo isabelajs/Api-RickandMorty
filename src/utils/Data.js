@@ -265,8 +265,7 @@ class DataBase{
     data.forEach(episode=>{
       nameEpisodes.push(episode.name)
     })
-    let newNameEpisodes = nameEpisodes.reverse()
-    return newNameEpisodes
+    return nameEpisodes
   }
 }
 
