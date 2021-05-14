@@ -208,15 +208,25 @@ class DataBase{
     let filteredCharacters = []
 
     if (episodes.length !== 0){
+
       characters.forEach(character=>{
-        let episodeList = character.episode
-        episodeList.forEach(episode=>{
-          if(episodes.includes(episode)){
-            filteredCharacters.push(character)
-          }
-        })
-      })
+
+          let episodeList = character.episode
+          episodeList.forEach(episode=>{
+            if(episodes.includes(episode)){
+              if(!filteredCharacters.includes(character)){
+                filteredCharacters.push(character)
+              }
+            }
+          })
+        }
+          
+        
+        
+      )
+      
       return filteredCharacters
+
     }else{
       return characters
     }
@@ -300,7 +310,7 @@ let dataPage = new DataPage(1,20,0)
 export {dataCharacters, dataPage}
 
 // async function print (){
-//   let x = await dataCharacters.getOptionsEpisodiosName();
+//   let x = await dataCharacters.filterData
 //   console.log(x);
 // }
 

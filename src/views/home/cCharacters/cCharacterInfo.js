@@ -1,5 +1,3 @@
-import {displayOptions,clickActionsToOptions} from "../cOptionsBar.js"
-
 
 let cCharacterInfo = (character)=>{
   let view =` <div class="cInfoContainer">
@@ -58,7 +56,7 @@ function aggNameCharacterInfo(character, contenedor){
     title.style.fontSize = "11px"
   }
 }
-
+//renderiza los nombres de los capitulos donde aparecen
 async function renderOptionsEpisodes(buttonEpisode,character){
   let container = buttonEpisode.nextSibling.nextSibling
   let episodes = character.episode
@@ -69,7 +67,13 @@ async function renderOptionsEpisodes(buttonEpisode,character){
 
   let options =container.querySelectorAll(".options")
   options.forEach(option=>{
-    option.addEventListener("click",()=>{ clickActionsToOptions()})
+    option.addEventListener("click",(event)=>{ event.target.classList.toggle("options--selected")})
   })
+}
+
+function displayOptions(element){
+  element.classList.toggle("cOptionButton__title--selected")
+  let containerEpisodes = element.nextSibling.nextSibling
+  containerEpisodes.classList.toggle("hidden")
 }
 

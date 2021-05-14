@@ -12,6 +12,10 @@ module.exports= {
       filename: "main.js"
    },
 
+   resolve: {
+      extensions: ['.js']
+   },
+
    module: {
       rules:[
          {

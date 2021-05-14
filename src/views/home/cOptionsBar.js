@@ -72,8 +72,10 @@ let cOptionsBar = ()=>{
   })
 
   //TODO me hace falta una función que al dar click en un lugar diferente a los botones
+  window.onclick = (event)=>{closeButtonFilters(event.target)}
 
-  //le agrega el evento de ocultar el contenedor y deseleccionar el boton
+
+  //le agrega el evento de ocultar el contenedor y deseleccionar el boton, al seleccionar una opcion dentro de ordenar
   let options = optionsBar.querySelectorAll(".options")
   options.forEach(option=>{
     option.addEventListener("click",(event)=>{
@@ -87,16 +89,22 @@ let cOptionsBar = ()=>{
 
 //desplaza las opciones y se selecciona el boton
 function displayOptions(buttonSelected){
+  //obtengo el boton titulo anterior seleccionado
   let buttonSelectedBefore = document.querySelectorAll(".cOptionButton__title--selected")
   //selecciona todos los contenedores
   let containerButtonSelectedBefore = document.querySelectorAll(".cOptionButton__container")
+  //encuentro el contenedor  relaciondo con el buttonselected
   let containerButton = buttonSelected.nextSibling.nextSibling
+  //selecciono el botton selected
   buttonSelected.classList.toggle("cOptionButton__title--selected")
 
+  //escondo los contenedores segun si contienen container menu
   if(containerButton.classList.contains("menu__container")){
+    //hace visible el container seleccionado y a los otros los oculta
     containerButton.classList.toggle("hidden")
     containerButtonSelectedBefore.forEach(container=>{
-      if(container.classList.contains("menu__container") && container!=containerButton && !container.classList.contains("hidden")){
+      //&& !container.classList.contains("hidden")
+      if(container.classList.contains("menu__container") && container!=containerButton){
         container.classList.add("hidden")
       }
     })
@@ -111,6 +119,7 @@ function displayOptions(buttonSelected){
   
   //quita el seleccionado solo si tambien contiene la clase menu title
   buttonSelectedBefore.forEach(button=>{
+    //si el boton seleccionado y el boton anterior contiene menu tittle
     if(button.classList.contains("menu__title") && buttonSelected.classList.contains("menu__title")){
       button.classList.remove("cOptionButton__title--selected")
 
@@ -130,6 +139,14 @@ function displayOptions(buttonSelected){
 
 }
 
+//renderiza los personajes en orden
+function changeCharactersOrder(event){
+  //renderiza los personajes segun el elemento que le pase
+  let option = event.target
+  renderCharacters(option.id)
+  clickActionsToOptions(event)
+}
+
 //cierra el contenedor y quita la selección de los botones
 function clickActionsToOptions(event){
    //cierro los menus que esten abiertos
@@ -145,8 +162,17 @@ function clickActionsToOptions(event){
   renderSelectedOption(event.target)
 }
 
-export {cOptionsBar, displayOptions,clickActionsToOptions}
+//da color a la opcion elegida
+function renderSelectedOption (element){
+  let parentNode = element.parentNode
+  let itemSelectedBefore = parentNode.querySelector(".options--selected")
+  console.log(itemSelectedBefore);
 
+  if(itemSelectedBefore !=null){
+    itemSelectedBefore.classList.remove("options--selected")
+  }
+  element.classList.add("options--selected")
+}
 
 //permite seleccionar los diferentes estados de vida y renderiza
 let status = []
@@ -162,10 +188,10 @@ function selectStatusLife(container){
   dataCharacters.filter.status = status
   renderCharacters()
 }
-//renderiza las opciones
+
+//renderiza las opciones y les añade la función de renderizar
 async function renderOptions(button){
   let container = button.nextSibling.nextSibling
-  
   
   switch(button.textContent){
     
@@ -298,21 +324,24 @@ async function renderOptions(button){
 
 }
 
-//renderiza los personajes en orden
-function changeCharactersOrder(event){
-  //renderiza los personajes segun el elemento que le pase
-  let option = event.target
-  renderCharacters(option.id)
-  clickActionsToOptions(event)
+//cierra los menu desplegables al darle un click fuera de ellos
+function closeButtonFilters(element){
+  if(!element.classList.contains("menu__title") && !element.classList.contains("options") && !element.classList.contains("cOptionButton__title")){
+     //cierro los menus que esten abiertos
+    let containers = document.querySelectorAll(".cOptionButton__container")
+    containers.forEach(container=>{container.classList.add("hidden")})
+
+     //deselecciona el boton principal--title
+    let buttons = document.querySelectorAll(".cOptionButton__title--selected")
+    buttons.forEach(button=>{
+      button.classList.remove("cOptionButton__title--selected")
+    })
+  }
+
+  
 }
 
-function renderSelectedOption (element){
-  let itemSelectedBefore = document.querySelector(".options--selected")
-  if(itemSelectedBefore !=null){
-    itemSelectedBefore.classList.remove("options--selected")
-  }
-  element.classList.add("options--selected")
-}
+export {cOptionsBar, renderSelectedOption}
 
 
 

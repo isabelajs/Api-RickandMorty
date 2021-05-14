@@ -1,5 +1,9 @@
-import {cCharacterInfo} from "./cCharacterInfo.js"
+import {cCharacterInfo} from "./cCharacterInfo.js";
 
+import female from "../../../assets/img/female.svg";
+import male from "../../../assets/img/masculino.svg";
+import genderless from "../../../assets/img/genderless.svg";
+import unknown from "../../../assets/img/unknown.png";
 
 let cCharacterCard = (character)=>{
   let view = `  <div class="cCharacterCard__id hidden">
@@ -35,7 +39,7 @@ let cCharacterCard = (character)=>{
 
   characterCard.addEventListener("mouseenter", (event)=>{visibilityInformation(event.path[0])})
   characterCard.addEventListener("mouseleave", (event)=>{hiddenInformation(event.path[0])})
-  characterCard.addEventListener("click", (event)=>{visibilityModalInformation(event.path[1],character)})
+  characterCard.addEventListener("click", ()=>{visibilityModalInformation(character)})
 
   //modifica la barra de estado de vida del personaje
   statusLife(character)
@@ -43,7 +47,6 @@ let cCharacterCard = (character)=>{
   gender(character)
   //modifica el nombre segun el largo
   modifyNameSize(character,characterCard)
-  
 
   function statusLife(character){
     let txtStatus = characterCard.querySelector(".txt__status")
@@ -65,16 +68,16 @@ let cCharacterCard = (character)=>{
     let gender = characterCard.querySelector(".gender")
     switch(character.gender){
       case "Female":
-        gender.style.backgroundImage = "url('../assets/img/female.svg')";
+        gender.style.backgroundImage = `url(${female})`
         break;
       case "Male":
-        gender.style.backgroundImage = "url('../assets/img/masculino.svg')";
+        gender.style.backgroundImage = `url(${male})`
         break;
       case "Genderless":
-        gender.style.backgroundImage = "url('../assets/img/genderless.svg')";
+        gender.style.backgroundImage = `url(${genderless})`;
         break;
       case "unknown":
-        gender.style.backgroundImage = "url('../assets/img/unknown.svg')";   
+        gender.style.backgroundImage = `url(${unknown})`;
         break;
   }
   }
@@ -107,7 +110,7 @@ function hiddenInformation(card){
 }
 
 //muestra el modal con mas información del personaje y bloquea el scroll
-function visibilityModalInformation(card, character){
+function visibilityModalInformation(character){
   let containerCards = document.querySelector(".cCharacters__characters")
   containerCards.appendChild(cCharacterInfo(character))
   let html = document.querySelector ("html")
