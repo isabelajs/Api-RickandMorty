@@ -72,7 +72,8 @@ $color-bottom-hover:#0B647A;
 
 .app{
    min-height: calc(100vh - 110px);
-   background: $base-background;
+   background:#F83745;
+   // background: $base-background;
    @include centerObject;
    flex-direction: column;
    
