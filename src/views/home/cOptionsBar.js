@@ -1,5 +1,5 @@
 import {renderCharacters} from "./cCharacters/cCharacters.js"
-import {dataCharacters} from "../../utils/Data.js"
+import {dataCharacters, dataPage} from "../../utils/Data.js"
 
 let cOptionsBar = ()=>{
   const view = `  <div class="cOptionsBar__right">
@@ -71,7 +71,6 @@ let cOptionsBar = ()=>{
     button.addEventListener("click", (event)=> displayOptions(event.path[0]))
   })
 
-  //TODO me hace falta una función que al dar click en un lugar diferente a los botones
   window.onclick = (event)=>{closeButtonFilters(event.target)}
 
 
@@ -79,7 +78,7 @@ let cOptionsBar = ()=>{
   let options = optionsBar.querySelectorAll(".options")
   options.forEach(option=>{
     option.addEventListener("click",(event)=>{
-      changeCharactersOrder(event)
+      changeCharactersOrder(event.target)
     })
   })
   
@@ -140,15 +139,15 @@ function displayOptions(buttonSelected){
 }
 
 //renderiza los personajes en orden
-function changeCharactersOrder(event){
+function changeCharactersOrder(option){
   //renderiza los personajes segun el elemento que le pase
-  let option = event.target
-  renderCharacters(option.id)
-  clickActionsToOptions(event)
+  dataCharacters.filter.order = option.id
+  renderCharacters()
+  clickActionsToOptions(option)
 }
 
 //cierra el contenedor y quita la selección de los botones
-function clickActionsToOptions(event){
+function clickActionsToOptions(option){
    //cierro los menus que esten abiertos
   let containers = document.querySelectorAll(".cOptionButton__container")
   containers.forEach(container=>{container.classList.add("hidden")})
@@ -159,19 +158,18 @@ function clickActionsToOptions(event){
     button.classList.remove("cOptionButton__title--selected")
   })
 
-  renderSelectedOption(event.target)
+  renderSelectedOption(option)
 }
 
 //da color a la opcion elegida
-function renderSelectedOption (element){
-  let parentNode = element.parentNode
+function renderSelectedOption (option){
+  let parentNode = option.parentNode
   let itemSelectedBefore = parentNode.querySelector(".options--selected")
-  console.log(itemSelectedBefore);
 
   if(itemSelectedBefore !=null){
     itemSelectedBefore.classList.remove("options--selected")
   }
-  element.classList.add("options--selected")
+  option.classList.add("options--selected")
 }
 
 //permite seleccionar los diferentes estados de vida y renderiza

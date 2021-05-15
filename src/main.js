@@ -10,7 +10,9 @@ window.addEventListener("hashchange", ()=>{
 
 //cambio de posicion en los elementos del header
 window.addEventListener("resize",()=>{hiddenElementsHeader()});
-window.addEventListener("load",()=>{hiddenElementsHeader()});
+window.addEventListener("load",()=>{
+   window.location.hash = "#/personajes/1"
+   hiddenElementsHeader()});
 
 function hiddenElementsHeader(){
    let iconMenu = document.querySelector(".header__icon-menu")

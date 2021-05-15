@@ -19,8 +19,8 @@ let cCharacters = ()=>{
 
 
 //renderiza los personajes
-async function renderCharacters(tipoOrdenamiento){
-  let data = await dataCharacters.filtrar(tipoOrdenamiento)
+async function renderCharacters(){
+  let data = await dataCharacters.filtrar()
   //modifica en el dataPage el número de paginas a renderizar
   dataPage.numberOfPages = Math.ceil(data.length/dataPage.numberCharactersPage)
   
@@ -34,7 +34,7 @@ async function renderCharacters(tipoOrdenamiento){
     groupCharacters.forEach(character => {
       characters.appendChild(cCharacterCard(character))
     });
-    renderPageNumbering(tipoOrdenamiento)
+    renderPageNumbering()
 
   }else{
     data.forEach(character => {

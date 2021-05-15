@@ -10,12 +10,14 @@ class DataBase{
     this.dataBase = this.changeDataEpisodeCharacters()
     this.dataEpisode = this.getEpisodes()
     
-    this.filter = { status: [],
+    this.filter = { 
+                    status: [],
                     species: [],
                     gender: [], 
                     origin: [],
                     location:[],
                     episode: [],
+                    order: null,
                     };
     this.filterData = this.filtrar()
   };
@@ -79,7 +81,7 @@ class DataBase{
     return characters
   }
 
-  async filtrar(tipoOrdenamiento){
+  async filtrar(){
     let characters = await this.dataBase;
     let filteredStatusCharacteres = this.filterStatus(characters)    
     let filteredSpeciesCharacteres = this.filterSpecies(filteredStatusCharacteres)
@@ -87,39 +89,44 @@ class DataBase{
     let filteredOriginCharacters = this.filterOrigin(filteredGendercharacteres)
     let filteredLocationCharacters = this.filterLocation(filteredOriginCharacters)
     let filteredEpisodesCharacters = this.filterEpisodes(filteredLocationCharacters)
-    let filteredAndOrderCharacters = this.order(filteredEpisodesCharacters,tipoOrdenamiento)
+    let filteredAndOrderCharacters = this.order(filteredEpisodesCharacters)
     
     this.filterData = filteredAndOrderCharacters
     return filteredEpisodesCharacters
 
   }
 
-  order(characters, tipoOrdenamiento = null){
-    if(tipoOrdenamiento == "ascendente"){
-      characters.sort(function (a,b){
-        if(a.name > b.name){
-          return 1;
-        } else if (a.name < b.name) {
-          return -1;
-        } else {
-          return 0;
-        }
-      }) 
-      return characters
-    } else if (tipoOrdenamiento == "descendente") {
-      characters.sort(function (a,b){
-        if(a.name > b.name){
-          return -1;
-        } else if (a.name < b.name) {
-          return 1;
-        } else {
-          return 0;
-        }
-      }) 
-      return characters
+  order(characters){
+    let orderType = this.filter.order
+
+    if(orderType != null){
+      if(orderType == "ascendente"){
+        characters.sort(function (a,b){
+          if(a.name > b.name){
+            return 1;
+          } else if (a.name < b.name) {
+            return -1;
+          } else {
+            return 0;
+          }
+        }) 
+        return characters
+      } else if (orderType == "descendente") {
+        characters.sort(function (a,b){
+          if(a.name > b.name){
+            return -1;
+          } else if (a.name < b.name) {
+            return 1;
+          } else {
+            return 0;
+          }
+        }) 
+        return characters
+      }
     }else{
       return characters
     }
+ 
   }
 
   filterStatus (characters){

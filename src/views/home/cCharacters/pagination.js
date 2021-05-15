@@ -1,4 +1,3 @@
-import {renderCharacters} from "./cCharacters"
 import {dataPage} from "../../../utils/Data.js"
 
 
@@ -9,7 +8,7 @@ let cPageNumbering = ()=>{
 }
 
 
-function renderPageNumbering(tipoOrdenamiento){
+function renderPageNumbering(){
   //agrego el componente pageNumbering
   let pageNumbering = document.querySelector(".pageNumbering")
   let view = `    <div id="previous" class="bottom"> < </div>
@@ -19,29 +18,29 @@ function renderPageNumbering(tipoOrdenamiento){
 
   //permite ir a la pagina anterior
   let previousPage = document.querySelector("#previous")
-  previousPage.addEventListener("click",()=>{previousPageCharacters(tipoOrdenamiento);})
+  previousPage.addEventListener("click",()=>{previousPageCharacters();})
 
   //permite ir a la siguiente pagina
   let nextPage = document.querySelector("#next");
-  nextPage.addEventListener("click",()=>{nextPageCharacters(tipoOrdenamiento)})
+  nextPage.addEventListener("click",()=>{nextPageCharacters()})
 
   //renderiza el número de páginas
-  renderIndexNumber(tipoOrdenamiento)
+  renderIndexNumber()
 }
 
 
-async function renderIndexNumber(tipoOrdenamiento){
+async function renderIndexNumber(){
   let numberOfPages = dataPage.numberOfPages
   let indexPage = document.querySelector(".pageNumbering__index")
 
 
-  if(screen.width <768){
+  if(screen.width < 768){
     
     //si la páginas es menor a 5, se renderiza
     if(numberOfPages <= dataPage.numberOfPagesInPagination){
       let i = 1
       while(i <= numberOfPages){
-        indexPage.innerHTML += (`<a href="/#${i}" id="${i}" class="indexNumber">${i}</a>`)
+        indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
         i++
       }
       
@@ -61,7 +60,7 @@ async function renderIndexNumber(tipoOrdenamiento){
         dataPage.endPageBlock++
 
         while(i <= dataPage.endPageBlock){
-          indexPage.innerHTML += (`<a href="/#${i}" id="${i}" class="indexNumber">${i}</a>`)
+          indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
           i++
         }
 
@@ -70,13 +69,13 @@ async function renderIndexNumber(tipoOrdenamiento){
         dataPage.initPageBlock = i
         dataPage.endPageBlock = i+4
         while(i <= dataPage.endPageBlock){
-          indexPage.innerHTML += (`<a href="/#${i}" id="${i}" class="indexNumber">${i}</a>`)
+          indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
           i++
         }
       }else{
       let i = dataPage.initPageBlock
       while(i <= dataPage.endPageBlock){
-          indexPage.innerHTML += (`<a href="/#${i}" id="${i}" class="indexNumber">${i}</a>`)
+          indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
           i++
         }
       }
@@ -120,7 +119,7 @@ async function renderIndexNumber(tipoOrdenamiento){
     if(numberOfPages <= dataPage.numberOfPagesInPagination){
       let i = 1
       while(i <= numberOfPages){
-        indexPage.innerHTML += (`<a href="/#${i}" id="${i}" class="indexNumber">${i}</a>`)
+        indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
         i++
       }
       
@@ -132,7 +131,7 @@ async function renderIndexNumber(tipoOrdenamiento){
         dataPage.endPageBlock++
 
         while(i <= dataPage.endPageBlock){
-          indexPage.innerHTML += (`<a href="/#${i}" id="${i}" class="indexNumber">${i}</a>`)
+          indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
           i++
         }
 
@@ -141,13 +140,13 @@ async function renderIndexNumber(tipoOrdenamiento){
         dataPage.initPageBlock = i
         dataPage.endPageBlock = i+9
         while(i <= dataPage.endPageBlock){
-          indexPage.innerHTML += (`<a href="/#${i}" id="${i}" class="indexNumber">${i}</a>`)
+          indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
           i++
         }
       }else{
       let i = dataPage.initPageBlock
       while(i <= dataPage.endPageBlock){
-          indexPage.innerHTML += (`<a href="/#${i}" id="${i}" class="indexNumber">${i}</a>`)
+          indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
           i++
         }
       }
@@ -164,31 +163,29 @@ async function renderIndexNumber(tipoOrdenamiento){
   indexNumber.forEach(number=>{
     number.addEventListener("click",()=>{
       dataPage.pageNumber = parseInt(number.id)
-      renderCharacters(tipoOrdenamiento)
     })
   })
 
 }
 
-
-async function nextPageCharacters (tipoOrdenamiento){
+async function nextPageCharacters (){
   let numberOfPages = dataPage.numberOfPages
 
   //suma solo si existen mas paginas que visualizar
   if(dataPage.pageNumber < numberOfPages){
     dataPage.pageNumber += 1
   }
-
-  renderCharacters(tipoOrdenamiento)
+  window.location.hash = `#/personajes/${dataPage.pageNumber}`
+  
   
 }
 
-async function previousPageCharacters (tipoOrdenamiento){
+async function previousPageCharacters (){
   if(dataPage.pageNumber > 1){
     dataPage.pageNumber -= 1
   }
-  //renderiza los personajes
-  renderCharacters(tipoOrdenamiento)
+  window.location.hash = `#/personajes/${dataPage.pageNumber}`
+  
 }
 
 export {cPageNumbering, renderPageNumbering}

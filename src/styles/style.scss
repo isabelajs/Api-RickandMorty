@@ -182,6 +182,7 @@ $color-bottom-hover:#0B647A;
       &__characters{
 
          .cCharacterCard{
+            cursor: pointer;
             width: 260px;
             margin-top:30px ;
             @include centerObject;    
