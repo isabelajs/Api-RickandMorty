@@ -110,6 +110,24 @@ async function renderIndexNumber(){
                   indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
                   i++
               }
+            }else if(dataPage.pageNumber+1 <= numberOfPages){
+              dataPage.endPageBlock = dataPage.pageNumber + 1
+              dataPage.initPageBlock = dataPage.endPageBlock-4
+              let i = dataPage.initPageBlock
+              while(i <= dataPage.endPageBlock){
+                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  i++
+              }
+
+            } else{
+              dataPage.endPageBlock = dataPage.pageNumber 
+              dataPage.initPageBlock = dataPage.endPageBlock-4
+              let i = dataPage.initPageBlock
+              while(i <= dataPage.endPageBlock){
+                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  i++
+              }
+  
             }
 
           }
@@ -185,6 +203,24 @@ async function renderIndexNumber(){
                   indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
                   i++
               }
+            }else if(dataPage.pageNumber+1 <= numberOfPages){
+              dataPage.endPageBlock = dataPage.pageNumber + 1
+              dataPage.initPageBlock = dataPage.endPageBlock-9
+              let i = dataPage.initPageBlock
+              while(i <= dataPage.endPageBlock){
+                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  i++
+              }
+
+            } else{
+              dataPage.endPageBlock = dataPage.pageNumber 
+              dataPage.initPageBlock = dataPage.endPageBlock-9
+              let i = dataPage.initPageBlock
+              while(i <= dataPage.endPageBlock){
+                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  i++
+              }
+  
             }
 
           }
