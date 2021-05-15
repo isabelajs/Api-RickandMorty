@@ -73,44 +73,48 @@ async function renderIndexNumber(){
           i++
         }
       }else{
-      let i = dataPage.initPageBlock
-      while(i <= dataPage.endPageBlock){
-          indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
-          i++
+        //evalua si la numero de pagina esta dentro del rango de inicio-fin
+        if(dataPage.pageNumber >= dataPage.initPageBlock  && dataPage.pageNumber <= dataPage.endPageBlock){
+          let i = dataPage.initPageBlock
+          while(i <= dataPage.endPageBlock){
+              indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+              i++
+          }
+        }else{
+          if(dataPage.pageNumber < dataPage.initPageBlock){
+            if( dataPage.pageNumber-2 < 1){
+              dataPage.initPageBlock = 1
+              dataPage.endPageBlock = dataPage.initPageBlock+4
+              let i = dataPage.initPageBlock
+              while(i <= dataPage.endPageBlock){
+                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  i++
+              }
+
+            }else{
+              dataPage.initPageBlock =dataPage.pageNumber-2
+              dataPage.endPageBlock = dataPage.initPageBlock+4
+              let i = dataPage.initPageBlock
+              while(i <= dataPage.endPageBlock){
+                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  i++
+              }
+            }
+          }else if (dataPage.pageNumber > dataPage.endPageBlock){
+            
+            if( dataPage.pageNumber + 2 < numberOfPages){
+              dataPage.endPageBlock = dataPage.pageNumber + 2
+              dataPage.initPageBlock = dataPage.endPageBlock-4
+              let i = dataPage.initPageBlock
+              while(i <= dataPage.endPageBlock){
+                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  i++
+              }
+            }
+
+          }
         }
       }
-
-      //evaluo dataPage.pageNumber-1 = dataPage.endButtonblock , renderizar ....  i = dataPage.pageNumber
-        //let i = dataPage.pageNumber - 4
-
-        //i = 2
-
-        //boton-inicial = i 
-
-        // while(i <= boton-final){
-        //   indexPage.innerHTML += (`<a href="/#${i}" id="${i}" class="indexNumber">${i}</a>`)
-        //   i++
-        // }
-
-
-        //boton-final = i-1
-
-
-      //evaluo dataPage.pageNumber+1= el primer boton, renderizar ....  i = dataPage.pageNumber
-        //i = datapage.paagenumber 
-        //boton-inicial = i 
-        //boton-final = i
-
-      //else -> no me estan pidiendo desplazamientos
-        //renderizar i = boton-inicial
-
-      
-      // while(i <= numberOfPages){
-      //   if(i<= 5){
-      //     indexPage.innerHTML += (`<a href="/#${i}" id="${i}" class="indexNumber">${i}</a>`)
-      //   }
-      //   i++
-      // }
 
 
     }
@@ -124,7 +128,7 @@ async function renderIndexNumber(){
       }
       
     }else{
-      
+
       if(dataPage.pageNumber-1 == dataPage.endPageBlock){
         let i = dataPage.pageNumber-9
         dataPage.initPageBlock = i
@@ -144,11 +148,48 @@ async function renderIndexNumber(){
           i++
         }
       }else{
-      let i = dataPage.initPageBlock
-      while(i <= dataPage.endPageBlock){
-          indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
-          i++
+        //evalua si la numero de pagina esta dentro del rango de inicio-fin
+        if(dataPage.pageNumber >= dataPage.initPageBlock  && dataPage.pageNumber <= dataPage.endPageBlock){
+          let i = dataPage.initPageBlock
+          while(i <= dataPage.endPageBlock){
+              indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+              i++
+          }
+        }else{
+          if(dataPage.pageNumber < dataPage.initPageBlock){
+            if( dataPage.pageNumber-2 < 1){
+              dataPage.initPageBlock = 1
+              dataPage.endPageBlock = dataPage.initPageBlock+9
+              let i = dataPage.initPageBlock
+              while(i <= dataPage.endPageBlock){
+                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  i++
+              }
+
+            }else{
+              dataPage.initPageBlock =dataPage.pageNumber-2
+              dataPage.endPageBlock = dataPage.initPageBlock+9
+              let i = dataPage.initPageBlock
+              while(i <= dataPage.endPageBlock){
+                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  i++
+              }
+            }
+          }else if (dataPage.pageNumber > dataPage.endPageBlock){
+            
+            if( dataPage.pageNumber + 2 < numberOfPages){
+              dataPage.endPageBlock = dataPage.pageNumber + 2
+              dataPage.initPageBlock = dataPage.endPageBlock-9
+              let i = dataPage.initPageBlock
+              while(i <= dataPage.endPageBlock){
+                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  i++
+              }
+            }
+
+          }
         }
+        
       }
       
     }

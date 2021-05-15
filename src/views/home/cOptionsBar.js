@@ -144,6 +144,7 @@ function changeCharactersOrder(option){
   dataCharacters.filter.order = option.id
   renderCharacters()
   clickActionsToOptions(option)
+  window.location.hash = `#/personajes/1`
 }
 
 //cierra el contenedor y quita la selección de los botones
@@ -212,6 +213,7 @@ async function renderOptions(button){
             renderCharacters()
           }
           option.classList.toggle("options--selected")
+          window.location.hash = '#/personajes/1'
 
         })
         
@@ -238,6 +240,7 @@ async function renderOptions(button){
             renderCharacters()
           }
           option.classList.toggle("options--selected")
+          window.location.hash = '#/personajes/1'
 
         })
 
@@ -263,6 +266,8 @@ async function renderOptions(button){
             renderCharacters()
           }
           option.classList.toggle("options--selected")
+          window.location.hash = '#/personajes/1'
+
         })
         container.appendChild(option)
       })
@@ -286,6 +291,8 @@ async function renderOptions(button){
             renderCharacters()
           }
           option.classList.toggle("options--selected")
+          window.location.hash = '#/personajes/1'
+
         })
         
         container.appendChild(option)
@@ -310,6 +317,7 @@ async function renderOptions(button){
             renderCharacters()
           }
           option.classList.toggle("options--selected")
+          window.location.hash = '#/personajes/1'
 
         })
 
