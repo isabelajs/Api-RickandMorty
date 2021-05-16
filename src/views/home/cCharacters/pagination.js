@@ -240,7 +240,7 @@ async function renderIndexNumber(){
   let indexNumber = document.querySelectorAll(".indexNumber")
   indexNumber.forEach(number=>{
     number.addEventListener("click",()=>{
-      window.location.hash = `/#/personajes/${number.id}`
+      window.location.hash = `#/personajes/${number.id}`
       dataPage.pageNumber = parseInt(number.id)
     })
   })
