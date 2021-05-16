@@ -40,7 +40,7 @@ async function renderIndexNumber(){
     if(numberOfPages <= dataPage.numberOfPagesInPagination){
       let i = 1
       while(i <= numberOfPages){
-        indexPage.innerHTML += (`<a  id="${i}" class="indexNumber">${i}</a>`)
+        indexPage.innerHTML += (`<div  id="${i}" class="indexNumber">${i}</div>`)
         i++
       }
       
@@ -60,7 +60,7 @@ async function renderIndexNumber(){
         dataPage.endPageBlock++
 
         while(i <= dataPage.endPageBlock){
-          indexPage.innerHTML += (`<a  id="${i}" class="indexNumber">${i}</a>`)
+          indexPage.innerHTML += (`<div  id="${i}" class="indexNumber">${i}</div>`)
           i++
         }
 
@@ -69,7 +69,7 @@ async function renderIndexNumber(){
         dataPage.initPageBlock = i
         dataPage.endPageBlock = i+4
         while(i <= dataPage.endPageBlock){
-          indexPage.innerHTML += (`<a  id="${i}" class="indexNumber">${i}</a>`)
+          indexPage.innerHTML += (`<div  id="${i}" class="indexNumber">${i}</div>`)
           i++
         }
       }else{
@@ -77,7 +77,7 @@ async function renderIndexNumber(){
         if(dataPage.pageNumber >= dataPage.initPageBlock  && dataPage.pageNumber <= dataPage.endPageBlock){
           let i = dataPage.initPageBlock
           while(i <= dataPage.endPageBlock){
-              indexPage.innerHTML += (`<a  id="${i}" class="indexNumber">${i}</a>`)
+              indexPage.innerHTML += (`<div  id="${i}" class="indexNumber">${i}</div>`)
               i++
           }
         }else{
@@ -141,7 +141,7 @@ async function renderIndexNumber(){
     if(numberOfPages <= dataPage.numberOfPagesInPagination){
       let i = 1
       while(i <= numberOfPages){
-        indexPage.innerHTML += (`<a  id="${i}" class="indexNumber">${i}</a>`)
+        indexPage.innerHTML += (`<div  id="${i}" class="indexNumber">${i}</div>`)
         i++
       }
       
@@ -153,7 +153,7 @@ async function renderIndexNumber(){
         dataPage.endPageBlock++
 
         while(i <= dataPage.endPageBlock){
-          indexPage.innerHTML += (`<a  id="${i}" class="indexNumber">${i}</a>`)
+          indexPage.innerHTML += (`<div  id="${i}" class="indexNumber">${i}</div>`)
           i++
         }
 
@@ -162,7 +162,7 @@ async function renderIndexNumber(){
         dataPage.initPageBlock = i
         dataPage.endPageBlock = i+9
         while(i <= dataPage.endPageBlock){
-          indexPage.innerHTML += (`<a  id="${i}" class="indexNumber">${i}</a>`)
+          indexPage.innerHTML += (`<div  id="${i}" class="indexNumber">${i}</div>`)
           i++
         }
       }else{
@@ -170,7 +170,7 @@ async function renderIndexNumber(){
         if(dataPage.pageNumber >= dataPage.initPageBlock  && dataPage.pageNumber <= dataPage.endPageBlock){
           let i = dataPage.initPageBlock
           while(i <= dataPage.endPageBlock){
-              indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+              indexPage.innerHTML += (`<div href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
               i++
           }
         }else{
@@ -180,7 +180,7 @@ async function renderIndexNumber(){
               dataPage.endPageBlock = dataPage.initPageBlock+9
               let i = dataPage.initPageBlock
               while(i <= dataPage.endPageBlock){
-                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  indexPage.innerHTML += (`<div href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</div>`)
                   i++
               }
 
@@ -189,7 +189,7 @@ async function renderIndexNumber(){
               dataPage.endPageBlock = dataPage.initPageBlock+9
               let i = dataPage.initPageBlock
               while(i <= dataPage.endPageBlock){
-                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  indexPage.innerHTML += (`<div href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</div>`)
                   i++
               }
             }
@@ -200,7 +200,7 @@ async function renderIndexNumber(){
               dataPage.initPageBlock = dataPage.endPageBlock-9
               let i = dataPage.initPageBlock
               while(i <= dataPage.endPageBlock){
-                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  indexPage.innerHTML += (`<div href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</div>`)
                   i++
               }
             }else if(dataPage.pageNumber+1 <= numberOfPages){
@@ -208,7 +208,7 @@ async function renderIndexNumber(){
               dataPage.initPageBlock = dataPage.endPageBlock-9
               let i = dataPage.initPageBlock
               while(i <= dataPage.endPageBlock){
-                  indexPage.innerHTML += (`<a href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</a>`)
+                  indexPage.innerHTML += (`<div href="/#/personajes/${i}" id="${i}" class="indexNumber">${i}</div>`)
                   i++
               }
 
@@ -218,7 +218,7 @@ async function renderIndexNumber(){
               let i = dataPage.initPageBlock
               while(i <= dataPage.endPageBlock){
 
-                indexPage.innerHTML += (`<a  id="${i}" class="indexNumber">${i}</a>`)
+                indexPage.innerHTML += (`<div  id="${i}" class="indexNumber">${i}</div>`)
                 i++
               }
   
@@ -236,12 +236,11 @@ async function renderIndexNumber(){
   let page = document.getElementById(dataPage.pageNumber)
   page.classList.add("indexNumber__selected")
 
-  //asigna el evento a los nuevos botones
+  //asigna el evento div los nuevos botones
   let indexNumber = document.querySelectorAll(".indexNumber")
   indexNumber.forEach(number=>{
     number.addEventListener("click",()=>{
       window.location.hash = `#/personajes/${number.id}`
-      console.log("cambio");
       dataPage.pageNumber = parseInt(number.id)
     })
   })
