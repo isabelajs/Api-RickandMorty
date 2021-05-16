@@ -241,6 +241,7 @@ async function renderIndexNumber(){
   indexNumber.forEach(number=>{
     number.addEventListener("click",()=>{
       window.location.hash = `#/personajes/${number.id}`
+      console.log("cambio");
       dataPage.pageNumber = parseInt(number.id)
     })
   })
