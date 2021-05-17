@@ -539,13 +539,13 @@ li{
       z-index: 3;
       padding: 15px 0;
 
-      &:hover::after{
-         content: "";
-         position: absolute;
-         bottom: 7px;
-         border-bottom: $color-line 2px solid;
-         width: 32px;   
-      }
+      // &:hover::after{
+      //    content: "";
+      //    position: absolute;
+      //    bottom: 7px;
+      //    border-bottom: $color-line 2px solid;
+      //    width: 32px;   
+      // }
 
       &--selected{
          background: $third-blue;
@@ -582,12 +582,12 @@ li{
          text-align: center;
          padding: 10px 5px;
          top: 50px;
-         &:hover{
-            background-color: #69D200;
-         }
-         &:last-child{
-            border-radius: 0 0 4px 4px ;
-         }
+         // &:hover{
+         //    background-color: #69D200;
+         // }
+         // &:last-child{
+         //    border-radius: 0 0 4px 4px ;
+         // }
          &--selected{
             background-color: #69D200;
          }
@@ -605,9 +605,9 @@ li{
             height: 40px;
             padding: 10px 0;
             
-            &:hover::after{
-               bottom: 5px;
-            }
+            // &:hover::after{
+            //    bottom: 5px;
+            // }
          }
          &:last-child{
             border-radius: 0 0 4px 4px;
@@ -645,6 +645,7 @@ li{
 .hideContainerLife{
    mix-blend-mode: overlay;
 }
+
 
 
 
@@ -718,6 +719,38 @@ li{
       .notFound{
          width: 70%;
          height: 450px;
+      }
+   }
+
+   .cOptionButton{
+      &__title{
+         &:hover::after{
+            content: "";
+            position: absolute;
+            bottom: 7px;
+            border-bottom: $color-line 2px solid;
+            width: 32px;   
+         }
+   
+        
+      }
+      &__container{
+         .options{
+            &:hover{
+               background-color: #69D200;
+            }
+            &:last-child{
+               border-radius: 0 0 4px 4px ;
+            }
+            
+         }
+         .cOptionButton{
+            &__title{
+               &:hover::after{
+                  bottom: 5px;
+               }
+            }
+         }
       }
    }
    
