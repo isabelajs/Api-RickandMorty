@@ -3,7 +3,8 @@ import {cPageNumbering, renderPageNumbering } from "./pagination.js";
 import {dataCharacters, dataPage} from "../../../utils/Data.js";
 
 let cCharacters = ()=>{
-  let view =` <div class="cCharacters__characters"></div>`
+  let view =` <div class="cCharacters__characters"></div>
+              <div class="charactersNotFound hidden"></div>`
   let pageCharacters = document.createElement("div");
   pageCharacters.classList.add("cCharacters");
   pageCharacters.innerHTML = view;
@@ -22,12 +23,18 @@ let cCharacters = ()=>{
 async function renderCharacters(){
   let data = await dataCharacters.filtrar()
   let characters =  document.querySelector(".cCharacters__characters")
+  let pagination = document.querySelector(".pageNumbering")
+  let charactersNotFound = document.querySelector(".charactersNotFound")
+  
   characters.innerHTML = ""
   
   
   if(data.length !== 0){
     //modifica en el dataPage el número de paginas a renderizar
     dataPage.numberOfPages = Math.ceil(data.length/dataPage.numberCharactersPage)
+    characters.classList.remove("hidden")
+    pagination.classList.remove("hidden")
+    charactersNotFound.classList.add("hidden")
     
 
       //evalua si es necesario crear más paginas según el número de personajes
@@ -49,7 +56,10 @@ async function renderCharacters(){
     }
 
   }else{
-    console.log("pepe");
+    
+    charactersNotFound.classList.remove("hidden")
+    characters.classList.add("hidden")
+    pagination.classList.add("hidden")
     
   }
 

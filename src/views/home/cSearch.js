@@ -3,7 +3,7 @@ import { renderCharacters } from "./cCharacters/cCharacters.js"
 
 let cSearch = ()=>{
       let view = `      <button class="cSearch__buttonSend"></button>
-                        <input class="cSearch__search" type="search"  id ="buscador" placeholder="Buscar">`
+                        <input class="cSearch__search"  id ="buscador" placeholder="Buscar">`
       let search = document.createElement("div")
       search.classList.add("cSearch")
       search.innerHTML = view
