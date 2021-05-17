@@ -10,16 +10,20 @@ const router = (router)=>{
          return console.log("home");
 
       case "personajes":
-         let pageNumberInHash =parseInt(roadSegments[2])
+         let pageNumberInHash = parseInt(roadSegments[2])
+
          if (pageNumberInHash){
+
             if(pageNumberInHash <= dataPage.numberOfPages){
-               
                dataPage.pageNumber = pageNumberInHash
                renderCharacters()
             }else{
-               //TODO debe ir  la imagen de no encontrado
-               //debe agregarse una imagen que diga no encontrado
-               console.log("número de paginas mayor");
+               let notFound = document.createElement("div")
+               let cCharacters = document.querySelector(".cCharacters")
+               let main = document.querySelector(".app")
+               notFound.classList.add("notFound")
+               cCharacters.remove()
+               main.appendChild(notFound)
             }
 
          }

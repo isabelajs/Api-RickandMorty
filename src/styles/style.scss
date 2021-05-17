@@ -1,3 +1,4 @@
+
 $base-background: #1F252B;
 $second-blue: #191C1F;
 $third-blue: #22292F;
@@ -8,6 +9,7 @@ $color-unknown: #C8DEE9;
 $color-on-post: rgba(112, 116, 117, 0.1);
 $color-bottom-normal: #0597AE;
 $color-bottom-hover:#0B647A;
+
 
 
 @mixin centerObject{
@@ -457,6 +459,17 @@ $color-bottom-hover:#0B647A;
       
 
    }
+
+   .notFound{
+      background-image: url("../assets/img/notFound.png");
+      width: 90%;
+      height: 290px;
+      margin-top: 30px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 4px;
+      
+   }
    
 }
 
@@ -701,6 +714,10 @@ li{
                }
             }
          }
+      }
+      .notFound{
+         width: 70%;
+         height: 450px;
       }
    }
    

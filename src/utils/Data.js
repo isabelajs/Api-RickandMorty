@@ -9,8 +9,8 @@ class DataBase{
     this.urlBaseEpisode = urlEpisode;
     this.dataBase = this.changeDataEpisodeCharacters()
     this.dataEpisode = this.getEpisodes()
-    
     this.filter = { 
+                    search: null,
                     status: [],
                     species: [],
                     gender: [], 
@@ -83,7 +83,8 @@ class DataBase{
 
   async filtrar(){
     let characters = await this.dataBase;
-    let filteredStatusCharacteres = this.filterStatus(characters)    
+    let groupCharactersSearch = this.search(characters)
+    let filteredStatusCharacteres = this.filterStatus(groupCharactersSearch)    
     let filteredSpeciesCharacteres = this.filterSpecies(filteredStatusCharacteres)
     let filteredGendercharacteres = this.filterGender(filteredSpeciesCharacteres)
     let filteredOriginCharacters = this.filterOrigin(filteredGendercharacteres)
@@ -93,6 +94,27 @@ class DataBase{
     
     this.filterData = filteredAndOrderCharacters
     return filteredEpisodesCharacters
+
+  }
+
+  search(characters){
+    let nameSearch = this.filter.search
+    var expReg = new RegExp (`${nameSearch}`, "i")
+    let nameCharactersMatch = []
+
+    if (nameSearch !== null){
+      characters.forEach(character=>{
+        if(character.name.search(expReg)>0){
+          nameCharactersMatch.push(character)
+        }
+      })
+      return nameCharactersMatch
+    }else{
+      return characters
+    }
+
+    
+    
 
   }
 
@@ -317,7 +339,7 @@ let dataPage = new DataPage(1,20,0)
 export {dataCharacters, dataPage}
 
 // async function print (){
-//   let x = await dataCharacters.filterData
+//   let x = await dataCharacters.filtrar()
 //   console.log(x);
 // }
 
