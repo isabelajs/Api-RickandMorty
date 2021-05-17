@@ -11,7 +11,7 @@ let main = ()=>{
    cMain.appendChild(cCharacters())
 
    // //cambio de posicion en los elementos del header
-   // window.addEventListener("resize",()=>{moveSearch()});
+   window.addEventListener("resize",()=>{moveSearch()});
    window.addEventListener("load",()=>{moveSearch()});
 
    
