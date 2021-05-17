@@ -49,9 +49,8 @@ async function renderCharacters(){
     }
 
   }else{
-    let charactersNotFound = document.createElement("div")
-    charactersNotFound.classList.add("charactersNotFound")
-    characters.appendChild(charactersNotFound)
+    console.log("pepe");
+    
   }
 
 

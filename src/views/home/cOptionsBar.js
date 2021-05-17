@@ -71,7 +71,7 @@ let cOptionsBar = ()=>{
     button.addEventListener("click", (event)=> displayOptions(event.path[0]))
   })
 
-  window.onclick = (event)=>{closeButtonFilters(event.target)}
+  // window.onclick = (event)=>{closeButtonFilters(event.target)}
 
 
   //le agrega el evento de ocultar el contenedor y deseleccionar el boton, al seleccionar una opcion dentro de ordenar
