@@ -7,8 +7,8 @@ let cSearch = ()=>{
       let search = document.createElement("div")
       search.classList.add("cSearch")
       search.innerHTML = view
-      let buttonSearch = search.querySelector(".cSearch__buttonSend")
-      buttonSearch.addEventListener("click", searchFunction )
+      // let buttonSearch = search.querySelector(".cSearch__buttonSend")
+      // buttonSearch.addEventListener("click", searchFunction )
 
       return search
 }
