@@ -10,9 +10,9 @@ let main = ()=>{
    cMain.appendChild(cOptionsBar())
    cMain.appendChild(cCharacters())
 
-   // //cambio de posicion en los elementos del header
-   // window.addEventListener("resize",()=>{moveSearch()});
-   // window.addEventListener("load",()=>{moveSearch()});
+   //cambio de posicion en los elementos del header
+   window.addEventListener("resize",()=>{moveSearch()});
+   window.addEventListener("load",()=>{moveSearch()});
 
    
    return cMain

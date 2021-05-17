@@ -3,13 +3,12 @@ import { renderCharacters } from "./cCharacters/cCharacters.js"
 
 let cSearch = ()=>{
       let view = `      <button class="cSearch__buttonSend"></button>
-                        
-                        <input type="text">`
+                        <input class="cSearch__search" type="text"  id ="buscador" placeholder="Buscar">`
       let search = document.createElement("div")
       search.classList.add("cSearch")
       search.innerHTML = view
       let buttonSearch = search.querySelector(".cSearch__buttonSend")
-      // buttonSearch.addEventListener("click", searchFunction )
+      buttonSearch.addEventListener("click", searchFunction )
 
       return search
 }
@@ -31,4 +30,3 @@ function searchFunction (){
       window.location.hash = "#/personajes/1"
 }
 
-{/* <input class="cSearch__search" type="text"  id ="buscador" placeholder="Buscar"></input> */}
