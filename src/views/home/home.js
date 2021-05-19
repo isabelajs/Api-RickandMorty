@@ -10,8 +10,14 @@ let main = ()=>{
    cMain.appendChild(cOptionsBar())
    cMain.appendChild(cCharacters())
 
+
    // //cambio de posicion en los elementos del header
-   window.addEventListener("resize",()=>{moveSearch()});
+   window.addEventListener("resize",()=>{
+      deviceType()
+      //si no estoy en un celular
+      
+   
+   });
    window.addEventListener("load",()=>{moveSearch()});
 
    
@@ -38,7 +44,14 @@ function moveSearch(){
    
 }
 
-
+function deviceType (){
+   const dispositivo = navigator.userAgent;
+   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(dispositivo)){
+      moveSearch()
+   }else{
+      console.log("no contiene");
+   }
+}
 
 
 
