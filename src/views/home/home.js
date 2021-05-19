@@ -47,9 +47,9 @@ function moveSearch(){
 function deviceType (){
    const dispositivo = navigator.userAgent;
    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(dispositivo)){
-      moveSearch()
+      console.log("cambio");
    }else{
-      console.log("no contiene");
+      moveSearch()
    }
 }
 
