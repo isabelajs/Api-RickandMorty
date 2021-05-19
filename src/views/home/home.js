@@ -46,12 +46,9 @@ function moveSearch(){
 
 function deviceType (){
    const dispositivo = navigator.userAgent;
-   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(dispositivo)){
-      console.log("cambio");
-   }else{
+   if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(dispositivo)){
       moveSearch()
    }
 }
-
 
 
