@@ -3,8 +3,9 @@ import {cPageNumbering, renderPageNumbering } from "./pagination.js";
 import {dataCharacters, dataPage} from "../../../utils/Data.js";
 
 let cCharacters = ()=>{
-  let view =` <div class="cCharacters__characters"></div>
-              <div class="charactersNotFound hidden"></div>`
+  let view =`   <div class ="loader"></div>
+                <div class="cCharacters__characters"></div>
+                <div class="charactersNotFound hidden"></div>`
   let pageCharacters = document.createElement("div");
   pageCharacters.classList.add("cCharacters");
   pageCharacters.innerHTML = view;
@@ -25,6 +26,8 @@ async function renderCharacters(){
   let characters =  document.querySelector(".cCharacters__characters")
   let pagination = document.querySelector(".pageNumbering")
   let charactersNotFound = document.querySelector(".charactersNotFound")
+  let loader = document.querySelector(".loader")
+  loader.classList.add("hidden")
   
   characters.innerHTML = ""
   

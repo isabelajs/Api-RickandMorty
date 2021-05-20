@@ -655,6 +655,20 @@ li{
    mix-blend-mode: overlay;
 }
 
+.loader {
+   border: 16px solid $base-background;
+   border-radius: 50%;
+   border-top: 16px solid #3498db;
+   width: 100px;
+   height: 100px;
+   -webkit-animation: spin 2s linear infinite;
+   animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+   0% { -webkit-transform: rotate(0deg); }
+   100% { -webkit-transform: rotate(360deg); }
+}
 
 
 
