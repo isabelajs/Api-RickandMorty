@@ -9,4 +9,8 @@ Api sobre los personajes de Rick and Morty.
 * [5. Autores](#5-autores)
 
 ## 1. Resumen del proyecto
-En este proyecto se contruyo una pagina web  responsive que permite al usuario conocer los personajes y algunas curiosidades extra sobre la serie Rick and Morty. La pagina cuenta con opciones de filtrado por categorias clave relacionadas a los personajes, y ordenamiento por nombre en orden ascendente y descendente, para facilitar la busqueda y/o exploración de los mismos
+En este proyecto se contruyo una pagina web  responsive que le permite al usuario conocer sobre los personajes de Rick and Morty. La pagina cuenta con opciones de filtrado por categorias y ordenamiento por nombre en orden ascendente y descendente, además de un filtro que facilita el filtrado de los personajes según su estado de vida, de manera que se facilita la busqueda y/o exploración de los mismos.
+
+## 2. Producto Final
+En el siguiente link se puede visualizar el resultado final. 
+[Api Rick and Morty](https://isabelajs.github.io/Api-RickandMorty/#/personajes/1)
