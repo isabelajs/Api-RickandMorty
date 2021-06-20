@@ -103,7 +103,7 @@ class DataBase{
       return characters
     }
   }
-
+  //ordena los personajes por AZ-ZA
   order(characters){
     let orderType = this.filter.order
 
@@ -135,83 +135,63 @@ class DataBase{
       return characters
     }
   }
-
+  //filtra los personajes segun el estatus de vida entre vivo, muerto, desconocido
   filterStatus (characters){
     let status = this.filter.status
-    let filteredCharacters =[]
     
     if ( status.length !== 0){
-      characters.forEach( character => {
-        if (status.includes(character.status)){
-          filteredCharacters.push(character)
-        }
+      return characters.filter(character=>{
+        return status.includes(character.status)
       })
-      return filteredCharacters
     }else{
       return characters
     }
   }
-
+  //filtra los personajes segun la especie
   filterSpecies (characters){
     let species = this.filter.species
-    let filteredCharacters = []
 
     if (species.length !== 0){
-      characters.forEach(character=>{
-        if(species.includes(character.species)){
-          filteredCharacters.push(character)
-        }
+      return characters.filter(character=>{
+        return species.includes(character.species)
       })
-      return filteredCharacters
     }else{
       return characters
     }
   }
-
+  //filtra los personajes según el sexo
   filterGender(characters){
     let gender = this.filter.gender
-    let filteredCharacters = []
 
     if (gender.length !== 0){
-      characters.forEach(character => {
-        if(gender.includes(character.gender)){
-          filteredCharacters.push(character)
-        }
-      });
-      return filteredCharacters
+      return characters.filter(c=>{
+        return gender.includes(c.gender)
+      })
     } else{
       return characters
     }
 
   }
-
+  //filtra los personajes segun el origen
   filterOrigin(characters){
     let origin = this.filter.origin
-    let filteredCharacters = []
 
     if (origin.length !== 0){
-      characters.forEach(character => {
-        if (origin.includes(character.origin.name)){
-          filteredCharacters.push(character)
-        }
+      return characters.filter(c=>{
+        return origin.includes(c.origin.name)
       })
-      return filteredCharacters
     }else {
       return characters
     }
   }
-
+  //filtra los personajes según su ubicación
   filterLocation(characters){
     let location = this.filter.location
-    let filteredCharacters = []
 
     if (location.length !== 0){
-      characters.forEach(character => {
-        if (location.includes(character.location.name)){
-          filteredCharacters.push(character)
-        }
+      return characters.filter(c=>{
+        return location.includes(c.location.name)
       })
-      return filteredCharacters
     }else {
       return characters
     }
@@ -224,7 +204,6 @@ class DataBase{
     if (episodes.length !== 0){
 
       characters.forEach(character=>{
-
           let episodeList = character.episode
           episodeList.forEach(episode=>{
             if(episodes.includes(episode)){
@@ -235,8 +214,6 @@ class DataBase{
           })
         }
           
-        
-        
       )
       
       return filteredCharacters

@@ -117,7 +117,7 @@ function visibilityModalInformation(character){
   html.classList.add("scrollHidden")
 }
 
-//modifica el nombre según su largo
+// //modifica el nombre según su largo
 function modifyNameSize(character, contenedor){
   let name = contenedor.querySelector(".txt__name")
   if(character.name.length>=30){
