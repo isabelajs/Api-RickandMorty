@@ -11,7 +11,7 @@ window.addEventListener("hashchange", ()=>{
 //cambio de posicion en los elementos del header
 window.addEventListener("resize",()=>{hiddenElementsHeader()});
 window.addEventListener("load",()=>{
-   window.location.hash = "#/personajes/1"
+   window.location.hash = "#/personajes"
    hiddenElementsHeader()});
 
 function hiddenElementsHeader(){
@@ -30,8 +30,6 @@ function hiddenElementsHeader(){
 //se añade el main dentro de la página
 let header = document.querySelector(".header")
 header.insertAdjacentElement("afterend",main())
-
-
 
 
 

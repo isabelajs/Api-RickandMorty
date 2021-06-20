@@ -1,14 +1,13 @@
 
 let url = "https://rickandmortyapi.com/api/character"
-let urlEpisode = "https://rickandmortyapi.com/api/episode"
-let fetch = require("node-fetch")
+let urlEpisodes = "https://rickandmortyapi.com/api/episode"
 
 class DataBase{
-  constructor (url, urlEpisode){
+  constructor (url, urlEpisodes){
     this.urlBase = url;
-    this.urlBaseEpisode = urlEpisode;
-    this.dataBase = this.changeDataEpisodeCharacters()
-    this.dataEpisode = this.getEpisodes()
+    this.urlBaseEpisodes = urlEpisodes;
+    this.dataEpisode = this.getEpisodes()     
+    this.dataBase = this.changeDataEpisodeCharacters()  //Merge data final
     this.filter = { 
                     search: null,
                     status: [],
@@ -21,7 +20,7 @@ class DataBase{
                     };
     this.filterData = this.filtrar()
   };
-
+//Obtiene la data de una url
   async getData (url = this.urlBase){
     let results = [];
     let urlNext = url;
@@ -35,18 +34,14 @@ class DataBase{
     
     return results
   }
-
+  //obtiene los nombres y id de cada episodio
   async getEpisodes(){
-    let episodios = await this.getData(this.urlBaseEpisode)
-    let dataEpisodes = []
-
-    episodios.forEach(episodio => {
-      dataEpisodes.push([episodio.id, episodio.name])
-    });
-
+    let episodes = await this.getData(this.urlBaseEpisodes)
+    let dataEpisodes = episodes.map(episode =>[episode.id, episode.name])
     return dataEpisodes
   }
 
+  //Cambiar lo numeracion x nombre de los episodios de cada personaje
   async changeDataEpisodeCharacters(){
     let characters = await this.getData()
     let dataEpisodes = await this.dataEpisode
@@ -78,6 +73,7 @@ class DataBase{
 
     })
 
+
     return characters
   }
 
@@ -91,31 +87,21 @@ class DataBase{
     let filteredLocationCharacters = this.filterLocation(filteredOriginCharacters)
     let filteredEpisodesCharacters = this.filterEpisodes(filteredLocationCharacters)
     let filteredAndOrderCharacters = this.order(filteredEpisodesCharacters)
-    
-    this.filterData = filteredAndOrderCharacters
-    return filteredEpisodesCharacters
+    return filteredAndOrderCharacters
 
   }
-
+  //busca el personaje de acuerdo a un dato del search
   search(characters){
     let nameSearch = this.filter.search
-    var expReg = new RegExp (`${nameSearch}`, "i")
-    let nameCharactersMatch = []
-
+  
     if (nameSearch !== null){
-      characters.forEach(character=>{
-        if(character.name.search(expReg)>0){
-          nameCharactersMatch.push(character)
-        }
+      return characters.filter((c)=>{
+        return c.name.toLowerCase().includes(nameSearch.toLowerCase())
       })
-      return nameCharactersMatch
+      
     }else{
       return characters
     }
-
-    
-    
-
   }
 
   order(characters){
@@ -148,7 +134,6 @@ class DataBase{
     }else{
       return characters
     }
- 
   }
 
   filterStatus (characters){
@@ -300,7 +285,7 @@ class DataBase{
 
   async getOptionsEpisodiosName(){
     let nameEpisodes = []
-    let data = await this.getData(this.urlBaseEpisode)
+    let data = await this.getData(this.urlBaseEpisodes)
     data.forEach(episode=>{
       nameEpisodes.push(episode.name)
     })
@@ -333,7 +318,7 @@ class DataPage{
 
 
 
-let dataCharacters = new DataBase(url, urlEpisode)
+let dataCharacters = new DataBase(url, urlEpisodes)
 let dataPage = new DataPage(1,20,0)
 
 export {dataCharacters, dataPage}

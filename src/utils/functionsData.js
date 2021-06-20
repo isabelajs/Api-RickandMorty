@@ -51,5 +51,5 @@ async function previousLink(url){
 
 
 
-export{getData, getResults, nextLink, previousLink}
+// export{getData, getResults, nextLink, previousLink}
 
