@@ -8,8 +8,10 @@ module.exports= {
    entry: "./src/main.js",
 
    output: {
-      path: path.resolve(__dirname,"docs"),
-      filename: "main.js"
+      path: path.resolve(__dirname,"dist"),
+      filename: "main.js",
+      clean: true,
+      publicPath: './'
    },
 
    resolve: {
@@ -20,12 +22,23 @@ module.exports= {
       rules:[
          {
             test: /\.css$|\.scss$/i,
-            use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+            use: [{
+               loader: MiniCssExtractPlugin.loader,
+               options:{
+                  publicPath: './'
+               }
+            }, 
+            "css-loader", 
+            "sass-loader",
+         ]
          },
 
          {
             test: /\.(png|svg|jpg|jpeg|gif)$/i,
             type: 'asset/resource',
+            generator:{
+               filename: 'static/images/[hash][ext]'
+            }
             
          }
 
