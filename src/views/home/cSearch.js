@@ -17,17 +17,18 @@ let cSearch = ()=>{
 
 export {cSearch};
 
+//función buscar elemento en la data
 function searchFunction (){
       let searchWordContainer = document.querySelector(".cSearch__search")
       let wordSearch = searchWordContainer.value;
 
       if(wordSearch !==""){
             dataCharacters.filter.search = wordSearch
-            renderCharacters()
       }else{
             dataCharacters.filter.search = null
-            renderCharacters()
       }
+      
+      renderCharacters()
 
       window.location.hash = "#/personajes/1"
 }

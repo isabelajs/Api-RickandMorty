@@ -2,30 +2,17 @@ import "./styles/style.scss"
 import {router} from "./router/indexRoutes.js"
 import {main} from "./views/home/home.js"
 
-
-
-window.addEventListener("hashchange", ()=>{
-   router(window.location.hash)
+window.addEventListener("hashchange", (e)=>{
+   router({
+      oldUrl:e.oldURL,
+      newUrl:window.location.hash
+   })
 })
 
-//cambio de posicion en los elementos del header
-window.addEventListener("resize",()=>{hiddenElementsHeader()});
+//la primera vez esto da igual se coloca el hash pero no activa hashchange
 window.addEventListener("load",()=>{
-   window.location.hash = "#/personajes"
-   hiddenElementsHeader()});
-
-function hiddenElementsHeader(){
-   let iconMenu = document.querySelector(".header__icon-menu")
-   let menu = document.querySelector(".header__menu")
-
-   if (screen.width >= 768){     
-      iconMenu.classList.add("hidden")
-      menu.classList.remove("hidden")
-   }else{
-      iconMenu.classList.remove("hidden")
-      menu.classList.add("hidden")
-   }
-}
+   window.location.hash = "#/personajes/1"
+});
 
 //se añade el main dentro de la página
 let header = document.querySelector(".header")

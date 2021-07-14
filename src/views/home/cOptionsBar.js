@@ -186,6 +186,7 @@ function selectStatusLife(container){
   }
   dataCharacters.filter.status = status
   renderCharacters()
+
 }
 
 //renderiza las opciones y les añade la función de renderizar
@@ -354,10 +355,17 @@ export {cOptionsBar, renderSelectedOption}
 
 
 
+const x = 1
+
+function suma(variable){
+
+  return variable
+  
+}
 
 
 
 
 
 
-
+//la data se pide async y la data se pide antes que se empiecen a cargar los elementos ? realmente es antes?

@@ -1,0 +1,91 @@
+.cOptionsBar{  
+  @include centerObject;
+  margin-top: 15px;
+  height: 50px;
+  background: $second-blue;
+  width: 100%;
+
+
+  &__right{
+    width: 100%;
+    @include centerObject;
+    justify-content: center;
+
+    .containerMenu{
+      width: 100%;
+    }
+
+  }
+  
+
+  &__lifeBar{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    height: 50px;
+    
+
+    .lifeBar{
+      @include centerObject;
+      width: 76px;
+      height: 18px;
+
+      .containerLife{
+          width: 20px;
+          height: 18px;
+          transform: skew(150deg);
+          background-color: $color-on-post;
+          cursor: pointer;
+
+          &--alive{
+          background: $color-alive;
+          margin-right: 8px;
+          }
+
+          &--dead{
+            background: $color-dead;
+            margin-right: 8px;
+
+          }
+
+          &--unknown{
+            background: $color-unknown;
+          }
+      }
+      
+
+      
+    }
+
+}
+
+}
+
+
+@media (min-width:768px){
+  .app{
+    
+    .cOptionsBar{
+      width: 95%;
+      justify-content: space-between;
+      padding: 0 25px;
+      .cSearch{
+          margin-top: 0;
+      }
+      
+      &__right{
+        margin-left: 10px;
+          max-width: 386px;
+      }
+    }
+
+  }
+}
+
+@media (min-width: 1240px) {
+  .cOptionsBar{
+    max-width: 1230px;
+  }
+}
+

@@ -13,37 +13,51 @@ let cCharacters = ()=>{
   //inserto el componente numeración de página
   pageCharacters.insertAdjacentElement ("beforeend", cPageNumbering())
 
+
+  //hacer la peticion de datos osea arrancar a pedirlos
+
+  //cuando ya los tenga entonces ejecutar rendercharacters mandar a ejecutar la funcion por un callback en vez de awaits
+
+  //como el loader ya fue renderizado entonces ...la funcion callback lo apagaria
+
   renderCharacters()
+
 
   return pageCharacters
 
 }
 
 
-//renderiza los personajes
+//TODO: CAMBIAR EL CSS DE LA PAGINACION (BUGS DE SELECCION)
+
 async function renderCharacters(){
-  let data = await dataCharacters.filtrar()
+
+  let data = await dataCharacters.filtrar() 
+  
+  // console.log('ya tengo la info perro');
   let characters =  document.querySelector(".cCharacters__characters")
   let pagination = document.querySelector(".pageNumbering")
   let charactersNotFound = document.querySelector(".charactersNotFound")
   let loader = document.querySelector(".loader")
+
   loader.classList.add("hidden")
-  
+
+  //elimina los personajes visualmente
   characters.innerHTML = ""
   
-  
-  if(data.length !== 0){
+  //TODO: HACER UN COMPONENTE PARA EL NOTFOUND MAS BIEN
+  if(data.length > 0){
     //modifica en el dataPage el número de paginas a renderizar
-    dataPage.numberOfPages = Math.ceil(data.length/dataPage.numberCharactersPage)
+    dataPage.numberOfPages = Math.ceil(data.length/dataPage.charactersPerPage)
     characters.classList.remove("hidden")
     pagination.classList.remove("hidden")
     charactersNotFound.classList.add("hidden")
     
+    //si existen mas personajes que el limite de personajes por hoja
+    if(data.length > dataPage.charactersPerPage){
 
-      //evalua si es necesario crear más paginas según el número de personajes
-    if(data.length > dataPage.numberCharactersPage){
-
-      let groupCharacters = data.slice(dataPage.numberCharactersPage*(dataPage.pageNumber-1),dataPage.numberCharactersPage*dataPage.pageNumber)
+      //renderizar los personajes de la hoja actual
+      let groupCharacters = data.slice(dataPage.charactersPerPage*(dataPage.currentPage-1),dataPage.charactersPerPage*dataPage.currentPage)
       groupCharacters.forEach(character => {
         characters.appendChild(cCharacterCard(character))
       });
@@ -60,18 +74,14 @@ async function renderCharacters(){
 
   }else{
     
+    //no hay personajes disponibles, agregar notFound
     charactersNotFound.classList.remove("hidden")
     characters.classList.add("hidden")
     pagination.classList.add("hidden")
     
   }
 
-
 }
-
-
-
-
 
 
 export{cCharacters, renderCharacters}

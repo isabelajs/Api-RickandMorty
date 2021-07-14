@@ -1,0 +1,28 @@
+
+$base-background: #1F252B;
+$second-blue: #191C1F;
+$third-blue: #22292F;
+$color-line: #1BBCA9;
+$color-dead: #F83745;
+$color-alive: #34DA76;
+$color-unknown: #C8DEE9;
+$color-on-post: rgba(112, 116, 117, 0.1);
+$color-bottom-normal: #0597AE;
+$color-bottom-hover:#0B647A;
+
+
+
+@mixin centerObject{
+   display: flex;
+   align-items: center;
+}
+@mixin setImage{
+   background-size: contain;
+   background-repeat:no-repeat ;
+   background-position: center;
+}
+@mixin iconInfo{
+   width: 22.6px;
+   height: 22.6px;
+   @include setImage;
+}
