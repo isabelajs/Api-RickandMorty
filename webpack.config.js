@@ -5,13 +5,12 @@ const copyPlugin = require('copy-webpack-plugin')
 
 
 module.exports= {
-   entry: "./src/main.js",
+   entry: "/src/main.js",
 
    output: {
       path: path.resolve(__dirname,"dist"),
       filename: "main.js",
       clean: true,
-      publicPath: './'
    },
 
    resolve: {
@@ -25,7 +24,7 @@ module.exports= {
             use: [{
                loader: MiniCssExtractPlugin.loader,
                options:{
-                  publicPath: './'
+                  publicPath: '/'
                }
             }, 
             "css-loader", 
@@ -47,13 +46,13 @@ module.exports= {
 
    plugins:[
       new HtmlWebpackPlugin ({
-         template: "./src/templates/index.html",
+         template: "src/templates/index.html",
          filename :"index.html",
          inject: true,
       }),
 
       new MiniCssExtractPlugin({
-         filename: "style.css"
+         filename: "static/style.css"
       }),
 
       new copyPlugin({

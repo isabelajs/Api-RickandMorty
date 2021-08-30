@@ -1,6 +1,6 @@
 .cOptionsBar{  
   @include centerObject;
-  margin-top: 15px;
+  margin-top: 30px;
   height: 50px;
   background: $second-blue;
   width: 100%;
@@ -72,6 +72,8 @@
       padding: 0 25px;
       .cSearch{
           margin-top: 0;
+          height: 32px;
+          width: 400px;
       }
       
       &__right{
